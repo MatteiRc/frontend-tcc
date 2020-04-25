@@ -16,12 +16,9 @@ body{
   letter-spacing: 0.3rem;
   text-transform: uppercase; 
 }
-.text-blue{
-  color: var(--mainBlue);
+.text-mainColor{
+  color: var(--mainColor);
 }
 .text.bright{
   color: var(--lightBlue)
-}
-nav{
-  background-color: var(--mainColor);
 }
