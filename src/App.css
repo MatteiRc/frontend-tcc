@@ -12,13 +12,32 @@ body{
   color: var(--mainDark) !important;
 }
 .text-title{
-  font-family: 'Permanent Marker', cursive;
+  font-family: 'Merienda', cursive;
   letter-spacing: 0.3rem;
-  text-transform: uppercase; 
+  text-transform: uppercase;
+}
+.text-title-trabalho{
+  font-family: 'Merienda', cursive;
+  letter-spacing: 0.3rem;
+  text-transform: uppercase;
+  color: var(--mainDark);
+}
+.text-autor{
+  font-family: 'Patrick Hand', cursive;
+  letter-spacing: 0.3rem;
+  text-transform: uppercase;
+  color: var(--mainDark);
 }
 .text-mainColor{
   color: var(--mainColor);
 }
+.text-dark{
+  color:var(--mainDark);
+}
 .text.bright{
   color: var(--lightBlue)
+}
+#imag{
+  border: 1px solid var(--mainDark);
+  border-radius: 4px;
 }

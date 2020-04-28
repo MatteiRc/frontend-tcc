@@ -4,15 +4,30 @@ const ServicoContexto = React.createContext();
 
 class ProvedorServico extends Component {
     state ={
-        servicos,
+        servicos: [],
         detalheServico    
+    };
+    componentDidMount(){
+        this.setServicos();
     }
+    setServicos = () => {
+        let servic = [];
+        servicos.forEach(item =>{
+            const singleItem = {...item};
+            servic = [...servic, singleItem];
+
+        });
+        this.setState(()=>{
+            return {servicos:servic};
+        });
+    };
     handleDetalhe = () => {
         console.log('Ola detalhe');
-    }
+    };
     addToFavoritos = ()=>{
         console.log('Ola favorito');
-    }
+    };
+    
     render() {
         return (
             <ServicoContexto.Provider value={{
