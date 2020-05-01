@@ -5,7 +5,10 @@ const ServicoContexto = React.createContext();
 class ProvedorServico extends Component {
     state ={
         servicos: [],
-        detalheServico    
+        detalheServico,
+        favorito:[],
+        modalOpen:true,
+        modalServico: detalheServico 
     };
     componentDidMount(){
         this.setServicos();
@@ -21,24 +24,51 @@ class ProvedorServico extends Component {
             return {servicos:servic};
         });
     };
-    handleDetalhe = () => {
-        console.log('Ola detalhe');
+    handleDetalhe = (id) => {
+        const servico = this.getItem(id);
+        this.setState(()=>{
+            return {detalheServico:servico}
+        })
     };
-    addToFavoritos = ()=>{
-        console.log('Ola favorito');
+    addToFavoritos = (id)=>{
+        let tempProducts = [...this.state.servicos];
+        const index = tempProducts.indexOf(this.getItem(id));
+        const servico = tempProducts[index];
+        servico.inCart = true;
+        servico.cont = 1;
+        const preco = servico.preco;
+        servico.total = preco;
+        this.setState(()=>{
+            return { servico:tempProducts, favorito:[...this.state.favorito, servico] }; 
+        }, ()=>{console.log(this.state)});
     };
-    
+    getItem = (id) =>{
+        const product = this.state.servicos.find(item => item.id === id);
+        return product;
+    };
+    openModal = id=>{
+        const servico = this.getItem(id);
+        this.setState(()=>{
+            return {modalServico:servico, modalServico:true};
+        })
+    }
+    closeModal = id =>{
+        this.setState(()=>{
+            return {modalServico:false} 
+        })
+    }
     render() {
         return (
             <ServicoContexto.Provider value={{
                 ...this.state,
                 handleDetalhe: this.handleDetalhe,
-                addToFavoritos: this.addToFavoritos
-
+                addToFavoritos: this.addToFavoritos,
+                openModal: this.openModal,
+                closeModal: this.closeModal
             }}>
                 {this.props.children}
             </ServicoContexto.Provider>
-        )
+        );
     }
 }
 

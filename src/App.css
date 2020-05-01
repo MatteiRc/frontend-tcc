@@ -41,3 +41,16 @@ body{
   border: 1px solid var(--mainDark);
   border-radius: 4px;
 }
+#preco{
+  font-weight: bold;
+  color: var(--mainDark);
+}
+#informacao{
+  text-transform: capitalize;
+  font-weight: bold;
+  font-family: 'Kalam', cursive;
+  size: 50px;
+}
+#favoritado{
+    color: var(--mainYellow);
+}

@@ -6,7 +6,7 @@ https://www.iconfinder.com/Makoto_msk */
 export const servicos = [
   {
     id: 1,
-    title: "Google Pixel - Black",
+    title: "Professor Particular",
     img: "imgServico/servico-1.jpg",
     price: 10,
     company: "GOOGLE",
@@ -18,7 +18,7 @@ export const servicos = [
   },
   {
     id: 2,
-    title: "Samsung S7",
+    title: "Pintar A Parede",
     img: "imgServico/servico-2.jpeg",
     price: 16,
     company: "SAMSUNG",
@@ -30,7 +30,7 @@ export const servicos = [
   },
   {
     id: 3,
-    title: "HTC 10 - Black",
+    title: "Eletricidade",
     img: "imgServico/servico-3.jpeg",
     price: 8,
     company: "htc",
@@ -42,7 +42,7 @@ export const servicos = [
   },
   {
     id: 4,
-    title: "HTC 10 - White",
+    title: "Empregrada",
     img: "imgServico/servico-4.jpeg",
     price: 18,
     company: "htc",
@@ -54,7 +54,7 @@ export const servicos = [
   },
   {
     id: 5,
-    title: "HTC Desire 626s",
+    title: "Aula de musica",
     img: "imgServico/servico-5.jpg",
     price: 24,
     company: "htc",

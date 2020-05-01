@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom';
 import {ConsumidorServico} from '../contexto.js'; 
 import {ButtonFavorito} from './Button.js';
 import propTypes from 'prop-types';
+import '../App.css';
 
 export default class Produto extends Component {
     render() {
@@ -12,24 +13,31 @@ export default class Produto extends Component {
             <ProductWrapper className="col-9 mx-auto col-md-6 col-lg-3 my-3">
 
                 <div className="card">
-                    <div className="img-container p-5" onClick={()=> console.log('Voce me clicou no canto da imagem')}> 
-                    <Link to="/detalhes">
-                        <img src={img} alt="product" className="card-img-top" />  
-                    </Link>
-                    <ButtonFavorito className="card-btn" disabled={inCart ? true : false} onClick={()=>{console.log('Adicionado aos favoritos')}}>
-                    {inCart ? (
-                        <i id="favoritado" className="fas fa-star"></i>
-                    ) : (
-                        <i className="fas fa-star"></i>
-                    )}
-                    </ButtonFavorito>
-                    </div>
+                    <ConsumidorServico>
+                            {valor => (
+                                <div className="img-container p-5" onClick={()=> valor.handleDetalhe(id)}> 
+                                    <Link to="detalhes">
+                                        <img src={img} alt="product" className="card-img-top" />  
+                                    </Link>
+                                    <ButtonFavorito className="card-btn" disabled={inCart ? true : false} onClick={()=>{
+                                        valor.addToFavoritos(id);
+                                        valor.openModal(id);
+                                        }}>
+                                        {inCart ? (
+                                            <i id="favoritado" className="fas fa-star"></i>
+                                        ) : (
+                                            <i className="fas fa-star"></i>
+                                        )}
+                                    </ButtonFavorito>
+                                </div>
+                            )}
+                    </ConsumidorServico>
                     <div className="card-footer d-flex justify-content-between">
                     <p className="align-self-center mb-0">
                     {title}
                     </p>
                     <h5 className="font-italic mb-0">
-                        <span className="mr-1">$</span>
+                        <span className="mr-1">R$</span>
                         {price}
                     </h5>
                     </div>
@@ -52,9 +60,6 @@ const ProductWrapper = styled.div`
     border-color:transparent;
     transition: all 0s linear;
 }
-#favoritado{
-    color: var(--mainYellow);
-} 
 .card-footer{
     background:var(--mainColor);
     border-top:transparent;

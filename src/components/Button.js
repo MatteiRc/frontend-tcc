@@ -11,7 +11,6 @@ padding: 0.2rem 0.5rem;
 cursor: pointer;
 margin: 0.2rem 0.5rem 0.2rem 0;
 &:hover i{
-    background: var(--mainColor);
     color: var(--mainYellow);
 }
 &:focus{
@@ -29,7 +28,6 @@ padding: 0.2rem 0.5rem;
 cursor: pointer;
 margin: 0.2rem 0.5rem 0.2rem 0;
 &:hover i{
-    background: var(--mainColor);
     color: var(--lightBlue);
 }
 &:focus{

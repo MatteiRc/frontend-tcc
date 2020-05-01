@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
-import {ConsumidorServico} from '../contexto';
+import {ConsumidorServico, ProvedorServico} from '../contexto.js';
 import {Link} from 'react-router-dom';
-import {ButtonContainer} from './Button.js';
+import {ButtonServicos, ButtonFavorito} from './Button.js';
 import '../App.css'
+import { servicos, detalheServico} from '../data.js';
 export default class Detalhes extends Component {
     render() {
         return (
@@ -25,7 +26,34 @@ export default class Detalhes extends Component {
                                         feito por: <span className="text-uppercase">
                                         {company}    
                                         </span>
-                                    </h4>   
+                                    </h4>
+                                    <h4>
+                                        <p id="preco">Preço: R${price} 
+                                            &emsp;&emsp;
+                                            <ButtonFavorito 
+                                                favorito
+                                                disabled={inCart?true:false}
+                                                onClick={()=>{
+                                                    valor.addToFavoritos(id);
+                                                    valor.openModal(id);
+                                                }}
+                                            >
+                                                {inCart?<i id="favoritado" className="fas fa-star"></i>:<i className="fas fa-star"></i>}
+                                            </ButtonFavorito>
+                                        </p>
+                                    </h4>
+                                    <h4 id="informacao">DESCRIÇÃO SOBRE O SERVIÇO</h4>
+                                    <p className="text-muted lead">{info}</p>
+                                    <div>
+                                        <Link to='/'>
+                                            <ButtonServicos>
+                                                <span className="mr-2"> 
+                                                    <i class="fas fa-arrow-left"></i>
+                                                </span>
+                                                Voltar para Serviços
+                                            </ButtonServicos>
+                                        </Link>
+                                    </div>   
                                 </div>
                             </div>
                         </div>
