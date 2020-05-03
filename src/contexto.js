@@ -5,10 +5,8 @@ const ServicoContexto = React.createContext();
 class ProvedorServico extends Component {
     state ={
         servicos: [],
-        detalheServico,
-        favorito: servicos
-
-
+        detalheServico: detalheServico,
+        favorito: []
     };
     componentDidMount(){
         this.setServicos();
@@ -47,8 +45,19 @@ class ProvedorServico extends Component {
         return product;
     };
     removeItem = (id) =>{
-        console.log('Item removido');
-    }
+        let tempServicos = [...this.state.servicos];
+        let tempFavorito = [...this.state.favorito];
+        tempFavorito = tempFavorito.filter(item => item.id !== id);
+        const index = tempServicos.indexOf(this.getItem(id));
+        let removeServico = tempServicos[index];
+        removeServico.inCart = false;
+        this.setState(()=>{
+            return {
+                favorito: [...tempFavorito],
+                servicos:[...tempServicos]
+            }
+        })
+    };
     render() {
         return (
             <ServicoContexto.Provider value={{

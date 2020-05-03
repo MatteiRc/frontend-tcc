@@ -18,14 +18,8 @@ export default function FavoritoItem({item, value}) {
                             <Link to="/detalhesfav">
                                 <img src={img} alt="product" className="card-img-top" />  
                             </Link>
-                            <ButtonFavorito className="card-btn" disabled={inCart ? true : false} onClick={()=>{
-                                valor.addToFavoritos(id);
-                                }}>
-                                {inCart ? (
-                                    <i id="favoritado" className="fas fa-star"></i>
-                                ) : (
-                                    <i className="fas fa-star"></i>
-                                )}
+                            <ButtonFavorito className="card-btn" onClick={() => removeItem(id)}>
+                                <i id="favoritado" className="fas fa-star"></i>
                             </ButtonFavorito>
                         </div>
                     )}

@@ -47,7 +47,7 @@ export default class Detalhes extends Component {
                                         <Link to='/'>
                                             <ButtonServicos>
                                                 <span className="mr-2"> 
-                                                    <i class="fas fa-arrow-left"></i>
+                                                    <i className="fas fa-arrow-left"></i>
                                                 </span>
                                                 Voltar para Serviços
                                             </ButtonServicos>

@@ -5,7 +5,7 @@ export default function FavoritoVazio() {
         <div className = "container mt-5">
             <div className="row">
                 <div className="col-10 mx-auto text-center text-title">
-                    <TituloFav nome="Você ainda não tem nenhum serviço como" titulo="favorito"></TituloFav>
+                    <TituloFav nome="Você não tem nenhum serviço como" titulo="favorito"></TituloFav>
                 </div>
             </div>
         </div>
