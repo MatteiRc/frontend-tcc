@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import {ConsumidorServico, ProvedorServico} from '../contexto.js';
 import {Link} from 'react-router-dom';
-import {ButtonServicos, ButtonFavorito} from './Button.js';
+import {ButtonFavorito, ButtonFavoritoVoltar} from './Button.js';
 import '../App.css'
 import { servicos, detalheServico} from '../data.js';
 export default class Detalhes extends Component {
@@ -44,13 +44,13 @@ export default class Detalhes extends Component {
                                     <h4 id="informacao">DESCRIÇÃO SOBRE O SERVIÇO</h4>
                                     <p className="text-muted lead">{info}</p>
                                     <div>
-                                        <Link to='/'>
-                                            <ButtonServicos>
+                                        <Link to='/favoritos'>
+                                            <ButtonFavoritoVoltar>
                                                 <span className="mr-2"> 
-                                                    <i class="fas fa-arrow-left"></i>
+                                                    <i className="fas fa-star" />
                                                 </span>
-                                                Voltar para Serviços
-                                            </ButtonServicos>
+                                                Voltar para Favoritos
+                                            </ButtonFavoritoVoltar>
                                         </Link>
                                     </div>   
                                 </div>

@@ -31,6 +31,9 @@ body{
 .text-mainColor{
   color: var(--mainColor);
 }
+.text-mainYellow{
+  color: var(--mainYellow);
+}
 .text-dark{
   color:var(--mainDark);
 }

@@ -6,9 +6,9 @@ class ProvedorServico extends Component {
     state ={
         servicos: [],
         detalheServico,
-        favorito:[],
-        modalOpen:true,
-        modalServico: detalheServico 
+        favorito: servicos
+
+
     };
     componentDidMount(){
         this.setServicos();
@@ -46,16 +46,8 @@ class ProvedorServico extends Component {
         const product = this.state.servicos.find(item => item.id === id);
         return product;
     };
-    openModal = id=>{
-        const servico = this.getItem(id);
-        this.setState(()=>{
-            return {modalServico:servico, modalServico:true};
-        })
-    }
-    closeModal = id =>{
-        this.setState(()=>{
-            return {modalServico:false} 
-        })
+    removeItem = (id) =>{
+        console.log('Item removido');
     }
     render() {
         return (
@@ -63,8 +55,7 @@ class ProvedorServico extends Component {
                 ...this.state,
                 handleDetalhe: this.handleDetalhe,
                 addToFavoritos: this.addToFavoritos,
-                openModal: this.openModal,
-                closeModal: this.closeModal
+                removeItem: this.removeItem
             }}>
                 {this.props.children}
             </ServicoContexto.Provider>

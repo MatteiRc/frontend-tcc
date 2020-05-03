@@ -16,12 +16,11 @@ export default class Produto extends Component {
                     <ConsumidorServico>
                             {valor => (
                                 <div className="img-container p-5" onClick={()=> valor.handleDetalhe(id)}> 
-                                    <Link to="detalhes">
+                                    <Link to="/detalhes">
                                         <img src={img} alt="product" className="card-img-top" />  
                                     </Link>
                                     <ButtonFavorito className="card-btn" disabled={inCart ? true : false} onClick={()=>{
                                         valor.addToFavoritos(id);
-                                        valor.openModal(id);
                                         }}>
                                         {inCart ? (
                                             <i id="favoritado" className="fas fa-star"></i>

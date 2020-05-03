@@ -49,3 +49,18 @@ margin: 0.2rem 0.5rem 0.2rem 0;
     outline: none;
 }
 `;
+export const ButtonFavoritoVoltar = styled.button`
+font-size:1.4rem;
+border:0.05rem solid var(--mainDark);
+color: var(--mainDark);
+background: transparent;
+padding: 0.2rem 0.5rem;
+cursor: pointer;
+margin: 0.2rem 0.5rem 0.2rem 0;
+&:hover i{
+    color: var(--mainYellow);
+}
+&:focus{
+    outline: none;
+}
+`;
