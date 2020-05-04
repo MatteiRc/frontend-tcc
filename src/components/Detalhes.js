@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom';
 import {ButtonServicos, ButtonFavorito} from './Button.js';
 import '../App.css'
 import { servicos, detalheServico} from '../data.js';
+import NavbarServ from './NavBarServ.js';
 export default class Detalhes extends Component {
     render() {
         return (
@@ -11,6 +12,8 @@ export default class Detalhes extends Component {
                 {valor=>{
                     const {id, company, img, info, price, title, inCart} = valor.detalheServico;
                     return (
+                        <React.Fragment>
+                        <NavbarServ/>
                         <div className="container py-5">
                             <div className="row">
                                 <div className="text-title-trabalho col-10 mx-auto text-center text-slanted my-5">
@@ -56,6 +59,7 @@ export default class Detalhes extends Component {
                                 </div>
                             </div>
                         </div>
+                        </React.Fragment>
                     );
                 }}
             </ConsumidorServico>

@@ -45,6 +45,7 @@ class ProvedorServico extends Component {
         return product;
     };
     removeItem = (id) =>{
+        console.log('remove');
         let tempServicos = [...this.state.servicos];
         let tempFavorito = [...this.state.favorito];
         tempFavorito = tempFavorito.filter(item => item.id !== id);

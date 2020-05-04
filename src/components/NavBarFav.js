@@ -4,25 +4,21 @@ import logo from '../logo.png';
 import styled from 'styled-components';
 import {ButtonContainer, ButtonServicos} from './Button.js';
 
-export default class Navbar extends Component{
+export default class NavbarFav extends Component{
     render(){
         return (<NavWrapper className = "navbar navbar-expand-sm navbar-dark px-sm-5" >
             
                     <Link to='/'>
                         <img src={logo} alt="principal" className="navbar-brand"/>        
                     </Link>    
-                    <ul className="navbar-nav align-items-center">
-                        <li className="nav-item ml-5">
-                              
-                        </li> 
-                    </ul>
-                    <Link to='/favoritos' className="ml-auto">
-                        <ButtonContainer>
-                            <span className="mr-2">
-                                <i className="fas fa-star" />
+                    
+                    <Link to='/' className="ml-auto">
+                        <ButtonServicos>
+                            <span className="mr-2"> 
+                                <i className="fas fa-handshake"></i>
                             </span>
-                            favoritos
-                        </ButtonContainer>
+                                Serviços
+                            </ButtonServicos>
                     </Link>
                 </NavWrapper>
             );

@@ -19,8 +19,11 @@ export default class Produto extends Component {
                                     <Link to="/detalhes">
                                         <img src={img} alt="product" className="card-img-top" />  
                                     </Link>
-                                    <ButtonFavorito className="card-btn" disabled={inCart ? true : false} onClick={()=>{
-                                        valor.addToFavoritos(id);
+                                    <ButtonFavorito className="card-btn" onClick={()=>{
+                                            if(inCart == false)
+                                                valor.addToFavoritos(id);
+                                            else
+                                                valor.removeItem(id);
                                         }}>
                                         {inCart ? (
                                             <i id="favoritado" className="fas fa-star"></i>
