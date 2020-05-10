@@ -32,7 +32,7 @@ class ProvedorServico extends Component {
         let tempProducts = [...this.state.servicos];
         const index = tempProducts.indexOf(this.getItem(id));
         const servico = tempProducts[index];
-        servico.inCart = true;
+        servico.favorito = true;
         servico.cont = 1;
         const preco = servico.preco;
         servico.total = preco;
@@ -51,7 +51,7 @@ class ProvedorServico extends Component {
         tempFavorito = tempFavorito.filter(item => item.id !== id);
         const index = tempServicos.indexOf(this.getItem(id));
         let removeServico = tempServicos[index];
-        removeServico.inCart = false;
+        removeServico.favorito = false;
         this.setState(()=>{
             return {
                 favorito: [...tempFavorito],

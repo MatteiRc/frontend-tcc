@@ -18,10 +18,10 @@ function App() {
         <Route path="/detalhes" component={Detalhes} />
         <Route path="/favoritos" component={Favoritos} />
         <Route path="/detalhesfav" component={DetalhesFav} />
+        <Route component={Default} />
         <Navbar />
         <NavBarFav />
         <NavBarServ />
-        <Route component={Default} />
       </Switch>
     </React.Fragment>
   );  

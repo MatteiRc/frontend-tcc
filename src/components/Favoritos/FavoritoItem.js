@@ -6,7 +6,7 @@ import {ConsumidorServico} from '../../contexto.js';
 import {ButtonFavorito} from './../Button.js';
 import '../../App.css';
 export default function FavoritoItem({item, value}) {
-    const {id, title, img, price, total,info, count, inCart} = item;
+    const {id, titulo, img, preco, total,info, count, favorito} = item;
     const {removeItem} = value;
     return (
         <FavoritoStyled className="col-9 mx-auto col-md-6 col-lg-3 my-3">
@@ -14,7 +14,7 @@ export default function FavoritoItem({item, value}) {
         <div className="card">
             <ConsumidorServico>
                     {valor => (
-                        <div className="img-container p-5" onClick={()=> valor.handleDetalhe(id)}> 
+                        <div className="img-container p-3" onClick={()=> valor.handleDetalhe(id)}> 
                             <Link to="/detalhesfav">
                                 <img src={img} alt="product" className="card-img-top" />  
                             </Link>
@@ -26,11 +26,11 @@ export default function FavoritoItem({item, value}) {
             </ConsumidorServico>
             <div className="card-footer d-flex justify-content-between">
             <p className="align-self-center mb-0">
-            {title}
+            {titulo}
             </p>
             <h5 className="font-italic mb-0">
                 <span className="mr-1">R$</span>
-                {price}
+                {preco}
             </h5>
             </div>
         </div>                
@@ -69,14 +69,15 @@ const FavoritoStyled = styled.div`
 .card-btn {
     position: absolute;
     bottom:0;
+    left:0;
     rigth:0;
     padding: 0.2rem 0.7rem;
     background: var(--mainColor);
     border: none;
     color: var(--mainWhite);
     font-size: 1.4rem;
-    border-radius: 0.5rem 0 0 0;
-    transform: translate(100%, 100%);
+    border-radius: 0 0.5rem 0 0;
+    transform: translate(100%, 107%);
     transition: all 0.5s linear;
 }
 .img-container:hover .card-btn {
