@@ -4,6 +4,7 @@
   --lightBlue:#009ffd;
   --mainWhite:#f3f3f3;
   --mainDark:#232528;
+  --mainBlack: #000000;
   --mainYellow:#ffa400;
 }
 body{
@@ -37,6 +38,9 @@ body{
 .text-dark{
   color:var(--mainDark);
 }
+.text-black{
+  color:var(--mainBlack);
+}
 .text.bright{
   color: var(--lightBlue)
 }
@@ -56,4 +60,14 @@ body{
 }
 #favoritado{
     color: var(--mainYellow);
+}
+input[type=text], select {
+  width: 60%;
+  text-align: center;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid var(--mainDark);
+  border-radius: 4px;
+  box-sizing: border-box;
 }

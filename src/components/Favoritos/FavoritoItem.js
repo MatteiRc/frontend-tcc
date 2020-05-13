@@ -3,24 +3,26 @@ import {ButtonServicos} from '../Button.js';
 import styled from 'styled-components';
 import {Link} from 'react-router-dom';
 import {ConsumidorServico} from '../../contexto.js'; 
-import {ButtonFavorito} from './../Button.js';
-import '../../App.css';
 export default function FavoritoItem({item, value}) {
     const {id, titulo, img, preco, total,info, count, favorito} = item;
     const {removeItem} = value;
     return (
         <FavoritoStyled className="col-9 mx-auto col-md-6 col-lg-3 my-3">
-
-        <div className="card">
+                <div className="card">
             <ConsumidorServico>
                     {valor => (
                         <div className="img-container p-3" onClick={()=> valor.handleDetalhe(id)}> 
-                            <Link to="/detalhesfav">
+                            <Link to="/detalhes">
                                 <img src={img} alt="product" className="card-img-top" />  
                             </Link>
-                            <ButtonFavorito className="card-btn" onClick={() => removeItem(id)}>
-                                <i id="favoritado" className="fas fa-star"></i>
-                            </ButtonFavorito>
+                            <Link to='/chat'>
+                                <ButtonServicos className="card-btn">
+                                    <span className="mr-2">
+                                      <i class="fas fa-comments"></i>
+                                    </span>
+                                      Conversar
+                               </ButtonServicos>
+                            </Link>
                         </div>
                     )}
             </ConsumidorServico>
@@ -33,8 +35,9 @@ export default function FavoritoItem({item, value}) {
                 {preco}
             </h5>
             </div>
-        </div>                
-    </FavoritoStyled>
+            </div>    
+                  
+        </FavoritoStyled>
     )
 }
 const FavoritoStyled = styled.div`
@@ -70,15 +73,14 @@ const FavoritoStyled = styled.div`
     position: absolute;
     bottom:0;
     left:0;
-    rigth:0;
     padding: 0.2rem 0.7rem;
     background: var(--mainColor);
     border: none;
-    color: var(--mainWhite);
+    color: var(--mainDark);
     font-size: 1.4rem;
     border-radius: 0 0.5rem 0 0;
-    transform: translate(100%, 107%);
-    transition: all 0.5s linear;
+    transform: translate(600%, 50%);
+    transition: all 0.3s linear;
 }
 .img-container:hover .card-btn {
     transform: translate(0, 0);
