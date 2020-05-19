@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import {Link} from 'react-router-dom';
 import {ConsumidorServico} from '../../contexto.js'; 
 export default function FavoritoItem({item, value}) {
-    const {id, titulo, img, preco, total,info, count, favorito} = item;
+    const {id, titulo, img, preco, info, favorito} = item;
     const {removeItem} = value;
     return (
         <FavoritoStyled className="col-9 mx-auto col-md-6 col-lg-3 my-3">

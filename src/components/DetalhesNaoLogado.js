@@ -41,18 +41,6 @@ export default class Detalhes extends Component {
                                     <h4>
                                         <p id="preco">Preço: R${preco} 
                                             &emsp;&emsp;
-                                            <ButtonFavorito className="card-btn" onClick={()=>{
-                                            if(favorito == false)
-                                                valor.addToFavoritos(id);
-                                            else
-                                                valor.removeItem(id);
-                                            }}> Favorito -> 
-                                            {favorito ? (
-                                                <i id="favoritado" className="fas fa-star"></i>
-                                            ) : (
-                                                <i className="fas fa-star"></i>
-                                            )}
-                                    </ButtonFavorito>
                                         </p>
                                     </h4>
                                     <h4 id="informacao">DESCRIÇÃO SOBRE O SERVIÇO</h4>
