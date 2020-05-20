@@ -1,0 +1,46 @@
+.wrapper {
+    height: 115vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #58D3B4;
+  }
+
+  .form-wrapper {
+    height: 120vh;
+    width: 600px;
+    display: flex;
+    flex-direction: column;
+    padding: 20px 40px;
+    border-radius: 10px;
+    box-shadow: 0px 10px 50px #555;
+    background-color: #ffffff;
+  }
+
+  form {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  label {
+    font-size: 1.0em;
+    margin-bottom: 0.25em;
+    color: #222;
+    font-weight: lighter;
+  }
+
+  #descricao{
+    width: 100%;
+    padding: 50px 50px;
+  }
+
+  #cidade{
+      width: 100%;
+  }
+
+  #horarios{
+      width:100%;
+  }
+
