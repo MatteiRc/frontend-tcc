@@ -1,8 +1,8 @@
 import React from 'react';
-import './App.css';
+import './login/src/App.css';
 import ReactDOM from "react-dom";
 import axios from 'axios';
-import './id.css';
+import './login/src/id.css';
 const emailRegex = RegExp(
   /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
 );
@@ -10,7 +10,7 @@ const numeroRegex = RegExp(
   /\(\d{2,}\) \d{4,}\-\d{4}/
 );
 const cidadeEstadoRegex = RegExp(
-  /^[A-Za-zÀ-ÖØ-öø-ÿ][A-Za-zÀ-ÖØ-öø-ÿ\s]*$/
+    /^[A-Za-zÀ-ÖØ-öø-ÿ][A-Za-zÀ-ÖØ-öø-ÿ\s]*$/
 );
 const formValid = ({ formErrors, ...rest }) => {
   let valid = true;
@@ -59,10 +59,15 @@ export default class App extends React.Component {
       }
     };
   }
- componentDidMount(){
-  axios.get('http://localhost:3001/usuarios').then(res=>{
-   //console.log(res);
-    console.log(res.data);
+ componentWillMount(){
+  axios.get('http://localhost:3001/usuario/1').then(res=>{
+    this.setState({email: res.data.email});
+    this.setState({password: res.data.senha});
+    this.setState({nome: res.data.nome});
+    this.setState({sobrenome: res.data.nome});
+    this.setState({estado: res.data.estado});
+    this.setState({cidade: res.data.cidade});
+    this.setState({telefone: res.data.telefone});
   });
   
  }
@@ -122,17 +127,12 @@ export default class App extends React.Component {
     e.preventDefault();
     const { name, value } = e.target;
     let formErrors = { ...this.state.formErrors };
-
+ 
     switch (name) {
       case "nome":
         formErrors.nome =
-        (value.length > 3) && cidadeEstadoRegex.test(value) ? "" : "Nome invalido";
-        this.setState({aprovado: (value.length > 3) && cidadeEstadoRegex.test(value)});
-        break;
-      case "sobrenome":
-        formErrors.sobrenome =
-        (value.length > 3) && cidadeEstadoRegex.test(value) ? "" : "Sobrenome invalida";
-        this.setState({aprovado: (value.length > 3) && cidadeEstadoRegex.test(value)});
+          (value.length > 3) && cidadeEstadoRegex.test(value) ? "" : "Nome invalido";
+          this.setState({aprovado: (value.length > 3) && cidadeEstadoRegex.test(value)});
         break;
       case "cidade":
         formErrors.cidade =
@@ -165,13 +165,13 @@ export default class App extends React.Component {
         formErrors.password =
           value.length < 6 ? "minimo 6 caracteres" : "";
         formErrors.confirmarSenha =
-          this.state.confirmarSenha === value ? "" : "Por favor insira a mesma senha novamente";
-          this.setState({aprovado: this.state.confirmarSenha === value});
+          this.state.confirmarSenha !== value ? "Por favor insira a mesma senha novamente" : "";
+          this.setState({aprovado: this.state.confirmarSenha !== value});
         break;
         case "confirmarSenha":
           formErrors.confirmarSenha =
-            value === this.state.password ? "" : "Por favor insira a mesma senha novamente";
-            this.setState({aprovado: value === this.state.password });
+            value !== this.state.password ? "Por favor insira a mesma senha novamente" : "";
+            this.setState({aprovado: value !== this.state.password });
           break;
       default:
         break;
@@ -181,58 +181,9 @@ export default class App extends React.Component {
   };
   Message (state)  {
     const { formErrors } = this.state;
-    if (state === true) {
       return(
         <div>
-          <form method="get" action="/">
-            <button>
-                <span className="mr-2"> 
-                  <i className="fas fa-arrow-left"></i>
-                </span>
-                  Voltar
-            </button>
-          </form>
-          <div className="text-title-trabalho col-10 mx-auto text-center text-slanted my-5">
-              <h2>Login</h2>
-            </div>
-          <form onSubmit={this.handleLogin} noValidate method = "POST" >
-            <div className="email">
-              <label htmlFor="emailLogin" className="text-title-trabalho">Email</label>
-              <input
-                className={formErrors.emailLogin.length > 0 ? "error" : null}
-                placeholder="Email"
-                type="email"
-                name="emailLogin"
-                noValidate
-                onChange={this.handleChange}
-              />
-              {formErrors.emailLogin.length > 0 && (
-                <span className="errorMessage">{formErrors.emailLogin}</span>
-              )}
-            </div>
-            <div className="password">
-            <label htmlFor="passwordLogin" className="text-title-trabalho">Senha</label>
-              <input
-                className={formErrors.passwordLogin.length > 0 ? "error" : null}
-                placeholder="Password"
-                type="password"
-                name="password"
-                noValidate
-                onChange={this.handleChange}
-              />
-            </div>
-            <div className="createAccount">
-                <button type="submit">Login</button>
-              <small className="clique" onClick={this.handleClick}>Cadastre-se gratis!</small>
-            </div>
-          </form>
-        </div>
-      )
-    }
-    else{
-      return(
-        <div>
-          <form method="get" action="/">
+          <form method="get" action="/usuariologado">
             <button>
                 <span className="mr-2">
                   <i className="fas fa-arrow-left"></i>
@@ -246,6 +197,7 @@ export default class App extends React.Component {
               <label htmlFor="email" className="text-title-trabalho">Email</label>
               <input
                 className={formErrors.email.length > 0 ? "error" : null}
+                value= {this.state.email}
                 placeholder="Email"
                 type="email"
                 name="email"
@@ -260,6 +212,7 @@ export default class App extends React.Component {
               <label htmlFor="password" className="text-title-trabalho">Senha</label>
               <input
                 className={formErrors.password.length > 0 ? "error" : null}
+                value= {this.state.password}
                 placeholder="Senha"
                 type="password"
                 name="password"
@@ -284,10 +237,11 @@ export default class App extends React.Component {
                 <span className="errorMessage">{formErrors.confirmarSenha}</span>
               )}
             </div>
-            <div className="firstName">
-              <label htmlFor="nome" className="text-title-trabalho">Nome</label>
+            <div className="nomeCompleto">
+              <label htmlFor="nome" className="text-title-trabalho">Nome Completo</label>
               <input
                 className={formErrors.nome.length > 0 ? "error" : null}
+                value= {this.state.nome}
                 placeholder="Nome"
                 type="nome"
                 name="nome"
@@ -298,24 +252,11 @@ export default class App extends React.Component {
                 <span className="errorMessage">{formErrors.nome}</span>
               )}
             </div>
-            <div className="lastName">
-              <label htmlFor="lastName" className="text-title-trabalho">Sobrenome</label>
-              <input
-                className={formErrors.sobrenome.length > 0 ? "error" : null}
-                placeholder="Sobrenome"
-                type="sobrenome"
-                name="sobrenome"
-                noValidate
-                onChange={this.handleChange}
-              />
-              {formErrors.telefone.length > 0 && (
-                <span className="errorMessage">{formErrors.sobrenome}</span>
-              )}
-            </div>
             <div className="firstName">
               <label htmlFor="firstName" className="text-title-trabalho">Estado</label>
               <input
                 className={formErrors.estado.length > 0 ? "error" : null}
+                value= {this.state.estado}
                 placeholder="Estado"
                 type="estado"
                 name="estado"
@@ -330,6 +271,7 @@ export default class App extends React.Component {
               <label htmlFor="telefone" className="text-title-trabalho">Cidade</label>
               <input
                 className={formErrors.cidade.length > 0 ? "error" : null}
+                value= {this.state.cidade}
                 placeholder="Cidade"
                 type="cidade"
                 name="cidade"
@@ -344,6 +286,7 @@ export default class App extends React.Component {
               <label htmlFor="telefone" className="text-title-trabalho">Telefone</label>
               <input
                 className={formErrors.telefone.length > 0 ? "error" : null}
+                value= {this.state.telefone}
                 placeholder="Telefone"
                 type="telefone"
                 name="telefone"
@@ -355,13 +298,12 @@ export default class App extends React.Component {
               )}
             </div>
             <div className="createAccount">
-              <button type="submit">Cadastrar</button>
-              <small className="clique" onClick={this.handleClick}>Fazer Login</small>
+              <button type="submit">Atualizar</button>
+              <small className="clique">Deletar Conta</small>
             </div>
           </form>
         </div>
       )
-    }
   }
 
    handleClick = () => {

@@ -3,7 +3,7 @@ import {ConsumidorServico, ProvedorServico} from '../contexto.js';
 import {Link} from 'react-router-dom';
 import {ButtonFavorito, ButtonFavoritoVoltar} from './Button.js';
 import '../App.css'
-import NavBarServ from './NavBarServ';
+import NavBarServLogado from './NavBarServLogado.js';
 import { servicos, detalheServico} from '../data.js';
 export default class Detalhes extends Component {
     render() {
@@ -13,7 +13,7 @@ export default class Detalhes extends Component {
                     const {id, nome, img, info, preco, titulo, favorito} = valor.detalheServico;
                     return (
                         <React.Fragment>
-                        <NavBarServ/>
+                        <NavBarServLogado/>
                         <div className="container py-5">
                             <div className="row">
                                 <div className="text-title-trabalho col-10 mx-auto text-center text-slanted my-5">

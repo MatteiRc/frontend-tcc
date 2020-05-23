@@ -64,3 +64,13 @@ margin: 0.2rem 0.5rem 0.2rem 0;
     outline: none;
 }
 `;
+export const ButtonVoltar = styled.button`
+text-transform:capitalize;
+font-size:1.4rem;
+&:hover i{
+    color: var(--mainRed);
+}
+&:focus{
+    outline: none;
+}
+`;

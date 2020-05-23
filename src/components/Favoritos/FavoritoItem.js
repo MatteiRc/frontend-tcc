@@ -12,7 +12,7 @@ export default function FavoritoItem({item, value}) {
             <ConsumidorServico>
                     {valor => (
                         <div className="img-container p-3" onClick={()=> valor.handleDetalhe(id)}> 
-                            <Link to="/detalhes">
+                            <Link to="/detalhesLogado">
                                 <img src={img} alt="product" className="card-img-top" />  
                             </Link>
                             <Link to='/chat'>

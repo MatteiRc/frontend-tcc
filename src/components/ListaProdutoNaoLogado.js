@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Produto from './Produto.js';
 import Titulo from './Titulo.js';
 import {ConsumidorServico} from '../contexto.js';
-import NavBar from './NavBar.js';
 import {servicos} from '../data.js';
 import styled from 'styled-components';
 import {Link} from 'react-router-dom';
@@ -12,6 +11,7 @@ import '../App.css';
 import {
     Input
   } from "mdbreact";
+import NavbarInicio from './NavbarInicio.js';
 
 export default class ListaProduto extends Component {
 
@@ -74,7 +74,7 @@ export default class ListaProduto extends Component {
 
     return (
       <div className="flyout">
-        <NavBar/>  
+        <NavbarInicio/>  
         <main style={{ marginTop: "4rem" }}>
           <div className="container">
             <div className="row">

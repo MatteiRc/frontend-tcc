@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Produto from './Produto.js';
 import Titulo from './Titulo.js';
 import {ConsumidorServico} from '../contexto.js';
+import NavBarLogado from './NavBarLogado.js';
 import {servicos} from '../data.js';
 import styled from 'styled-components';
 import {Link} from 'react-router-dom';
@@ -11,7 +12,6 @@ import '../App.css';
 import {
     Input
   } from "mdbreact";
-import NavbarInicio from './NavbarInicio.js';
 
 export default class ListaProduto extends Component {
 
@@ -28,7 +28,7 @@ export default class ListaProduto extends Component {
             <ConsumidorServico>
                     {valor => (
                         <div className="img-container p-3" onClick={()=> valor.handleDetalhe(servico.id)}> 
-                            <Link to="/detalhes">
+                            <Link to="/detalheslogado">
                                 <img src={servico.img} alt="product" className="card-img-top" />  
                             </Link>
                             <Link to='/chat'>
@@ -46,7 +46,7 @@ export default class ListaProduto extends Component {
             {valor => (
               <div className="card-footer d-flex justify-content-between" onClick={()=> valor.handleDetalhe(servico.id)}>
                 <p className="align-self-center mb-0">
-                    <Link id="link" to='/detalhes'>   
+                    <Link id="link" to='/detalheslogado'>   
                         {servico.titulo}
                     </Link>
                     </p>
@@ -74,7 +74,7 @@ export default class ListaProduto extends Component {
 
     return (
       <div className="flyout">
-        <NavbarInicio/>  
+        <NavBarLogado />  
         <main style={{ marginTop: "4rem" }}>
           <div className="container">
             <div className="row">

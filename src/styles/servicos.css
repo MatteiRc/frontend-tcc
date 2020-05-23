@@ -27,13 +27,17 @@
   label {
     font-size: 1.0em;
     margin-bottom: 0.25em;
-    color: #222;
+    border-color: #222;
     font-weight: lighter;
   }
 
-  #descricao{
+  textarea {
+    min-height: 5em;
+    max-height: 50vh;
     width: 100%;
-    padding: 50px 50px;
+    resize: none;
+    border-radius: 5px;
+    border-color: #555;
   }
 
   #cidade{

@@ -8,11 +8,11 @@ export default class NavbarFav extends Component{
     render(){
         return (<NavWrapper className = "navbar navbar-expand-sm navbar-dark px-sm-5" >
             
-                    <Link to='/'>
+                    <Link to='/usuariologado'>
                         <img src={logo} alt="principal" className="navbar-brand"/>        
                     </Link>    
                     
-                    <Link to='/' className="ml-auto">
+                    <Link to='/usuariologado' className="ml-auto">
                         <ButtonServicos>
                             <span className="mr-2"> 
                                 <i className="fas fa-handshake"></i>

@@ -21,7 +21,7 @@ const InitialState ={
     isEmpty:true
 }
 
-const usuario = {email:"henriquegarcia@teste.com",senha:"senha"};// feito para armarzenar 
+const usuario = {email:"raphacervimattei@gmail.com",senha:"senha123"};// feito para armarzenar 
                                                                  //no banco sem ter feito o login proprio, apenas para testes
 
 export default class Servico extends Component{
@@ -82,7 +82,7 @@ export default class Servico extends Component{
                 <br/>
                 <label for = "descricao">Descrição</label>
                 <br/>
-                <input type = "text" name = "descricao" id = "descricao" onChange = {e => this.updateField(e)}/>
+                <textarea type = "text" name = "descricao" id = "descricao" onChange = {e => this.updateField(e)}/>
                 </div>
                 <div class = "input area">
                 <br/>
