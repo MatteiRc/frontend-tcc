@@ -28,6 +28,7 @@ const formValid = ({ formErrors, ...rest }) => {
   return valid;
 };
 
+
 export default class App extends React.Component {
   constructor(props) {
     super(props);
@@ -59,13 +60,6 @@ export default class App extends React.Component {
       }
     };
   }
- componentDidMount(){
-  axios.get('http://localhost:3001/usuarios').then(res=>{
-   //console.log(res);
-    console.log(res.data);
-  });
-  
- }
 
   handleSubmit = e => {
       e.preventDefault();

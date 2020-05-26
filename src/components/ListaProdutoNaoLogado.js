@@ -12,12 +12,37 @@ import {
     Input
   } from "mdbreact";
 import NavbarInicio from './NavbarInicio.js';
+import axios from 'axios';
 
 export default class ListaProduto extends Component {
 
   state = {
-    search: ""
+    search: "",
+    servicos:[]
   };
+
+ 
+ componentDidMount(){
+   axios.get("http://localhost:3001/anuncios")
+  .then(res =>{
+    let arr = new Array();
+    let data = JSON.parse(JSON.stringify(res.data));
+    for(let i = 0; i < data.length; i++){
+      let servico = {
+        id: data[i].id,
+        titulo: data[i].titulo,
+        img: "http://localhost:3001/"+data[i].imagem,
+        preco: data[i].valor+'/hora',
+        nome: data[i].usuario,
+        info: data[i].descricao,
+        favorito: false
+      }
+      arr.push(servico);
+    }
+    this.setState({servicos:arr});
+    console.log(this.state.servicos);
+  })
+ }
 
   renderservico = servico => {
     const { search } = this.state;
