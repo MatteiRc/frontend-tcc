@@ -9,7 +9,8 @@ import Axios from 'axios';
 
 const baseUrl = "http://localhost:3001/fazeranuncio";
 const InitialState ={
-    anuncio:{cidade:"",
+    anuncio:{titulo:"",
+    cidade:"",
     descricao:"",
     horarios:"",
     valor:"",
@@ -21,7 +22,7 @@ const InitialState ={
     isEmpty:true
 }
 
-const usuario = {email:"raphacervimattei@gmail.com",senha:"senha123"};// feito para armarzenar 
+const usuario = {email:"henriquegarcia@teste.com",senha:"senha"};// feito para armarzenar 
                                                                  //no banco sem ter feito o login proprio, apenas para testes
 
 export default class Servico extends Component{
@@ -37,22 +38,28 @@ export default class Servico extends Component{
 
      save(event){
          event.preventDefault();
-         const anuncio = this.state.anuncio;
          const url = baseUrl + "/" + this.state.idUsuario;
-         Axios.post(url,anuncio)
-         .then(res=>{
-             console.log(res.data);
+         const data = new FormData();
+         data.append("file",this.state.anuncio.imagem);
+         data.append("cidade",this.state.anuncio.cidade);
+         data.append("descricao",this.state.anuncio.descricao);
+         data.append("horarios",this.state.anuncio.horarios);
+         data.append("valor",this.state.anuncio.valor);
+         data.append("titulo",this.state.anuncio.titulo);
+         Axios.post(url,data).then(res=>{
+             console.log(res);
          })
+
      }
 
      updateField(event){
          const anuncio = {...this.state.anuncio};
          let isEmpty = false;
          anuncio[event.target.name] = event.target.value;
-         if(anuncio.cidade == "" || anuncio.descricao == "" || anuncio.horarios == "" || anuncio.valor == "")
+         if(anuncio.cidade == "" || anuncio.descricao == "" || anuncio.horarios == "" || anuncio.valor == "" || anuncio.titulo == "")
              isEmpty = true;
              this.setState({anuncio,isEmpty});
-             console.log(this.state.isEmpty);
+
         }
 
      displayImg(event){
@@ -63,16 +70,21 @@ export default class Servico extends Component{
 
      fileSelect(event){
          const anuncio = {... this.state.anuncio};
-         anuncio[event.target.name] = event.target.files[0].name;
-         console.log(event.target.files[0].name);
+         anuncio[event.target.name] = event.target.files[0];
          this.setState({anuncio});
-         this.displayImg(event);;
+         this.displayImg(event);
+         console.log(anuncio.imagem);
      }
 
      renderForm(){
          return(
             <form method = "POST" onSubmit = {e => this.save(e)}>
                 <div class = "form">
+                <div class = "input area">
+                <label for = "titulo">Titulo do Serviço</label>
+                <br/>
+                <input type = "text" name = "titulo" id = "titulo" onChange ={e => this.updateField(e)}/>
+                </div>
                 <div class = "input area">
                 <label for = "cidade">Cidade</label>
                 <br/>
