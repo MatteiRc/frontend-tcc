@@ -93,7 +93,7 @@ export default class ListaProduto extends Component {
 
   render() {
     const { search } = this.state;
-    const filteredCountries = this.state.servicos.filter(servico => {
+    const filteredServicos = servicos.filter(servico => {
       return servico.titulo.toLowerCase().indexOf(search.toLowerCase()) !== -1;
     });
 
@@ -119,7 +119,7 @@ export default class ListaProduto extends Component {
               </div>
             </div>
             <div className="row">
-              {filteredCountries.map(servico => {
+              {filteredServicos.map(servico => {
                 return this.renderservico(servico);
               })}
             </div>
