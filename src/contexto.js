@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {servicos, detalheServico} from './data.js';
+import axios from 'axios';
 const ServicoContexto = React.createContext();
 
 class ProvedorServico extends Component {
@@ -8,12 +9,32 @@ class ProvedorServico extends Component {
         detalheServico: detalheServico,
         favorito: []
     };
+    
     componentDidMount(){
-        this.setServicos();
+        axios.get('http://localhost:3001/anuncios')
+        .then(res=>{
+        let arr = new Array();
+        let data = JSON.parse(JSON.stringify(res.data));
+        for(let i = 0; i < data.length; i++){
+            let servico = {
+                id: data[i].id,
+                titulo: data[i].titulo,
+                img: "http://localhost:3001/"+data[i].imagem,
+                preco: data[i].valor+'/hora',
+                nome: data[i].usuario,
+                info: data[i].descricao,
+                favorito: false
+            };
+            arr.push(servico);
+        }                                                    
+        this.setServicos(arr);
+    })
+
     }
-    setServicos = () => {
+
+    setServicos = (servico) => {
         let servic = [];
-        servicos.forEach(item =>{
+        servico.forEach(item =>{
             const singleItem = {...item};
             servic = [...servic, singleItem];
 

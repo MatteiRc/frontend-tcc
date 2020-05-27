@@ -23,7 +23,7 @@ export default class ListaProduto extends Component {
 
  
  componentDidMount(){
-   axios.get("http://localhost:3001/anuncios")
+  axios.get("http://localhost:3001/anuncios")
   .then(res =>{
     let arr = new Array();
     let data = JSON.parse(JSON.stringify(res.data));
@@ -43,7 +43,6 @@ export default class ListaProduto extends Component {
     console.log(this.state.servicos);
   })
  }
-
   renderservico = servico => {
     const { search } = this.state;
     var code = servico.id;
@@ -93,7 +92,7 @@ export default class ListaProduto extends Component {
 
   render() {
     const { search } = this.state;
-    const filteredCountries = servicos.filter(servico => {
+    const filteredCountries = this.state.servicos.filter(servico => {
       return servico.titulo.toLowerCase().indexOf(search.toLowerCase()) !== -1;
     });
 
