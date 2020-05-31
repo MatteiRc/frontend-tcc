@@ -5,6 +5,14 @@ import styled from 'styled-components';
 import {ButtonContainer, ButtonServicos, ButtonVoltar} from './Button.js';
 
 export default class Navbar extends Component{
+
+    clear = e => {
+        window.localStorage.clear();
+    }
+
+    
+
+
     render(){
         return (<NavWrapper className = "navbar navbar-expand-sm navbar-dark px-sm-5" >
             
@@ -56,14 +64,13 @@ export default class Navbar extends Component{
                         </Link>      
                         </li>
                     </ul>
-                    
-                    <Link to='/'>
-                            <ButtonVoltar title="Sair da Conta">
-                                <span className="mr-0">
-                                    <i class="fas fa-sign-out-alt"></i>
+                    <Link to='/' onclick={this.clear}>
+                            <ButtonVoltar title="Sair da Conta" onClickCapture = {this.clear}>
+                                <span className="mr-0" >
+                                    <i class="fas fa-sign-out-alt" onClickCapture={this.clear}></i>
                                 </span>
                             </ButtonVoltar>
-                        </Link>   
+                        </Link> 
                 </NavWrapper>
             );
     }

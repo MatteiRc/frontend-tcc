@@ -23,6 +23,9 @@ export default class ListaProduto extends Component {
 
  
  componentDidMount(){
+   if("id" in localStorage)
+   window.location.href = "http://localhost:3000/usuariologado";
+   else{
   axios.get("http://localhost:3001/anuncios")
   .then(res =>{
     let arr = new Array();
@@ -42,6 +45,7 @@ export default class ListaProduto extends Component {
     this.setState({servicos:arr});
     console.log(this.state.servicos);
   })
+}
  }
   renderservico = servico => {
     const { search } = this.state;

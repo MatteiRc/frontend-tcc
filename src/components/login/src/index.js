@@ -61,6 +61,10 @@ export default class App extends React.Component {
     };
   }
 
+  
+
+  
+
   handleSubmit = e => {
       e.preventDefault();
       const usuario = {
@@ -73,44 +77,44 @@ export default class App extends React.Component {
        };
     //if (formValid(this.state)) 
     if(this.state.aprovado === true ){
-      console.log(`
+     /* console.log(`
         --SUBMITTING--
         First Name: ${this.state.nome}
         Last Name: ${this.state.sobrenome}
         Email: ${this.state.email}
         Password: ${this.state.password}
-      `);
+      `);*/
         axios.post('http://localhost:3001/usuario',usuario)
        .then(res =>{
-         console.log(res.data);
-       })
-       window.location.href = "http://localhost:3000/usuariologado";
+         localStorage.setItem("id", res.data.id);
+         window.location.href = "http://localhost:3000/usuariologado";
+       }).catch(error=>{console.error(error.data)});
     }else{
       alert('Parece que o cadastro ainda está incompleto');
     }
-    //} else {
-      //console.error("FORM INVALID - DISPLAY ERROR MESSAGE");
   };
 
   handleLogin = e =>{
    e.preventDefault();
 
     const usuario = {
-    email: this.state.emailLogin,
-    senha: this.state.passwordLogin,
+    email:this.state.emailLogin,
+    senha: this.state.passwordLogin
    };
 
   //if (formValid(this.state)) {
-    console.log(`
+    /*console.log(`
       --SUBMITTING--
       Email: ${this.state.email}
       Password: ${this.state.password}
-    `);
+    `);*/
     
      axios.post('http://localhost:3001/loginUsuario',usuario)
      .then(res =>{
-       console.log(res);
-     })
+      localStorage.setItem("id",JSON.stringify(res.data.id));
+       console.log(res.data.id);
+       window.location.href = "http://localhost:3000/usuariologado";
+     }).catch(error=>{console.error(error)});
 };
   handleChange = e => {
     e.preventDefault();
@@ -171,7 +175,7 @@ export default class App extends React.Component {
         break;
     }
 
-    this.setState({ formErrors, [name]: value }, () => console.log(this.state));
+    this.setState({ formErrors, [name]: value }, /*() => console.log(this.state)*/);
   };
   Message (state)  {
     const { formErrors } = this.state;
@@ -210,7 +214,7 @@ export default class App extends React.Component {
                 className={formErrors.passwordLogin.length > 0 ? "error" : null}
                 placeholder="Password"
                 type="password"
-                name="password"
+                name="passwordLogin"
                 noValidate
                 onChange={this.handleChange}
               />
