@@ -22,23 +22,15 @@ const InitialState ={
     isEmpty:true
 }
 
-const usuario = {email:"henriquegarcia@teste.com",senha:"senha"};// feito para armarzenar 
-                                                                 //no banco sem ter feito o login proprio, apenas para testes
 
 export default class Servico extends Component{
      state = {...InitialState};
        
-     componentWillMount(){
-         Axios.post("http://localhost:3001/loginUsuario",usuario)
-         .then(res=>{
-              this.setState({idUsuario: res.data.id});
-              console.log(this.state.idUsuario);
-         })
-     }
+     
 
      save(event){
          event.preventDefault();
-         const url = baseUrl + "/" + this.state.idUsuario;
+         const url = baseUrl + "/" + window.localStorage.getItem("id");
          const data = new FormData();
          data.append("file",this.state.anuncio.imagem);
          data.append("cidade",this.state.anuncio.cidade);
@@ -49,6 +41,7 @@ export default class Servico extends Component{
          Axios.post(url,data).then(res=>{
              console.log(res);
          })
+         window.location.href = "http://localhost:3000/usuariologado";
 
      }
 

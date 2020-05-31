@@ -28,6 +28,8 @@ const formValid = ({ formErrors, ...rest }) => {
   return valid;
 };
 
+const id_usuario = window.localStorage.getItem("id");
+
 export default class App extends React.Component {
   constructor(props) {
     super(props);
@@ -60,7 +62,7 @@ export default class App extends React.Component {
     };
   }
  componentWillMount(){
-  axios.get('http://localhost:3001/usuario/1').then(res=>{
+  axios.get('http://localhost:3001/usuario/'+id_usuario).then(res=>{
     this.setState({email: res.data.email});
     this.setState({password: res.data.senha});
     this.setState({nome: res.data.nome});
