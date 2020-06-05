@@ -59,7 +59,7 @@ export default class ListaProduto extends Component {
                             <Link to="/detalhes">
                                 <img src={servico.img} alt="product" className="card-img-top" />  
                             </Link>
-                            <Link to='/chat'>
+                            <Link to='/login'>
                                 <ButtonServicos className="card-btn">
                                     <span className="mr-2">
                                       <i class="fas fa-comments"></i>
@@ -96,7 +96,7 @@ export default class ListaProduto extends Component {
 
   render() {
     const { search } = this.state;
-    const filteredCountries = this.state.servicos.filter(servico => {
+    const filteredServicos = this.state.servicos.filter(servico => {
       return servico.titulo.toLowerCase().indexOf(search.toLowerCase()) !== -1;
     });
 
@@ -122,7 +122,7 @@ export default class ListaProduto extends Component {
               </div>
             </div>
             <div className="row">
-              {filteredCountries.map(servico => {
+              {filteredServicos.map(servico => {
                 return this.renderservico(servico);
               })}
             </div>

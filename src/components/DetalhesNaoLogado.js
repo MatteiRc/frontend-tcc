@@ -10,7 +10,7 @@ export default class Detalhes extends Component {
         return (
             <ConsumidorServico>
                 {valor=>{
-                    const {id, nome, img, info, preco, titulo, favorito} = valor.detalheServico;
+                    const {id, nome, img, info, preco, titulo, cidade, horario} = valor.detalheServico;
                     return (
                         <React.Fragment>
                         <NavbarServ/>
@@ -23,7 +23,7 @@ export default class Detalhes extends Component {
                             <div className="row">
                                 <div className="col-10 mx-auto col-md-6 my-3 ">
                                     <img id="imag" src={img} className="img-fluid" alt="servico"/>
-                                    <Link to='/chat'>
+                                    <Link to='/login'>
                                             <ButtonServicos>
                                                 <span className="mr-2"> 
                                                     <i class="fas fa-comments"></i>
@@ -40,6 +40,12 @@ export default class Detalhes extends Component {
                                     </h4>
                                     <h4>
                                         <p id="preco">Preço: R${preco} 
+                                            &emsp;&emsp;
+                                        </p>
+                                        <p id="cidade">Cidade: {cidade} 
+                                            &emsp;&emsp;
+                                        </p>
+                                        <p id="horario">{horario}
                                             &emsp;&emsp;
                                         </p>
                                     </h4>

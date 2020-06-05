@@ -9,10 +9,6 @@ export default class Navbar extends Component{
     clear = e => {
         window.localStorage.clear();
     }
-
-    
-
-
     render(){
         return (<NavWrapper className = "navbar navbar-expand-sm navbar-dark px-sm-5" >
             
@@ -21,7 +17,7 @@ export default class Navbar extends Component{
                     </Link>    
                     <ul className="nav justify-content-end">
                         <li className="nav-item ml-5">
-                        <Link to="/usuariologado">
+                        <Link to="/servicos">
                                 <ButtonServicos title="Criar Serviço">
                                     <span className="mr-0"> 
                                     <i class="fas fa-plus-circle"></i>
@@ -55,12 +51,12 @@ export default class Navbar extends Component{
                     </ul>
                     <ul className="nav justify-content-end">
                         <li className="nav-item">
-                        <Link to='/favoritos'>
-                            <ButtonContainer title="Serviços Favoritos">
+                        <Link to="/chat">
+                            <ButtonServicos title="Chat">
                                 <span className="mr-0">
-                                    <i className="fas fa-star" />
+                                    <i class="fas fa-comments"></i>
                                 </span>
-                            </ButtonContainer>
+                            </ButtonServicos>
                         </Link>      
                         </li>
                     </ul>

@@ -72,6 +72,14 @@ export default class Servico extends Component{
      renderForm(){
          return(
             <form method = "POST" onSubmit = {e => this.save(e)}>
+                <form method="get" action="/usuariologado">
+                    <button>
+                    <span className="mr-2">
+                        <i className="fas fa-arrow-left"></i>
+                    </span>
+                        Voltar
+                    </button>
+                </form>
                 <div class = "form">
                 <div class = "input area">
                 <label for = "titulo">Titulo do Serviço</label>
@@ -97,7 +105,7 @@ export default class Servico extends Component{
                 </div>
                 <div class = "Number area">
                 <br/>
-                <label for = "valor">Valor do serviço</label>
+                <label for = "valor">Valor do serviço/hora</label>
                 <br/>
                 <input type = "number" id = "valor" name = "valor" min = "0" max = "100000"  step = "0.01" onChange ={e => this.updateField(e)}/>
                 </div>

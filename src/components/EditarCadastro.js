@@ -15,12 +15,10 @@ const cidadeEstadoRegex = RegExp(
 const formValid = ({ formErrors, ...rest }) => {
   let valid = true;
 
-  // validate form errors being empty
   Object.values(formErrors).forEach(val => {
     val.length > 0 && (valid = false);
   });
 
-  // validate the form was filled out
   Object.values(rest).forEach(val => {
     val === null && (valid = false);
   });
@@ -46,7 +44,13 @@ export default class App extends React.Component {
       cidade: null,
       confirmarSenha: null,
       value:true,
-      aprovado: null,
+      aprovadoEmail: true,
+      aprovadoConfirmarSenha: false,
+      aprovadoNome: true,
+      aprovadoSobrenome: true,
+      aprovadoEstado: true,
+      aprovadoCidade: true,
+      aprovadoTelefone: true,
       formErrors: {
         nome: "",
         sobrenome: "",
@@ -85,21 +89,25 @@ export default class App extends React.Component {
         email: this.state.email
        };
     //if (formValid(this.state)) 
-    if(this.state.aprovado === true ){
-      console.log(`
-        --SUBMITTING--
-        First Name: ${this.state.nome}
-        Last Name: ${this.state.sobrenome}
-        Email: ${this.state.email}
-        Password: ${this.state.password}
-      `);
-        axios.post('http://localhost:3001/usuario',usuario)
+    if(this.state.aprovadoNome === true && this.state.aprovadoSobrenome === true && 
+       this.state.aprovadoEmail ===true && 
+       this.state.aprovadoConfirmarSenha === true &&
+       this.state.aprovadoEstado === true && this.state.aprovadoCidade === true && 
+       this.state.aprovadoTelefone === true){
+
+        axios.post('http://localhost:3001/updateUsuario',usuario)
        .then(res =>{
+        localStorage.setItem("id_usuario", res.data);
          console.log(res.data);
        })
        window.location.href = "http://localhost:3000/usuariologado";
     }else{
       alert('Parece que o cadastro ainda está incompleto');
+      console.log(this.state.aprovadoNome === true, this.state.aprovadoSobrenome === true, 
+        this.state.aprovadoEmail ===true, 
+        this.state.aprovadoConfirmarSenha === true,
+        this.state.aprovadoEstado, this.state.aprovadoCidade === true, 
+        this.state.aprovadoTelefone)
     }
     //} else {
       //console.error("FORM INVALID - DISPLAY ERROR MESSAGE");
@@ -114,11 +122,6 @@ export default class App extends React.Component {
    };
 
   //if (formValid(this.state)) {
-    console.log(`
-      --SUBMITTING--
-      Email: ${this.state.email}
-      Password: ${this.state.password}
-    `);
     
      axios.post('http://localhost:3001/loginUsuario',usuario)
      .then(res =>{
@@ -134,29 +137,29 @@ export default class App extends React.Component {
       case "nome":
         formErrors.nome =
           (value.length > 3) && cidadeEstadoRegex.test(value) ? "" : "Nome invalido";
-          this.setState({aprovado: (value.length > 3) && cidadeEstadoRegex.test(value)});
+          this.setState({aprovadoNome: (value.length > 3) && cidadeEstadoRegex.test(value)});
         break;
       case "cidade":
         formErrors.cidade =
           (value.length > 3) && cidadeEstadoRegex.test(value) ? "" : "Cidade invalida";
-          this.setState({aprovado: (value.length > 3) && cidadeEstadoRegex.test(value)});
+          this.setState({aprovadoCidade: (value.length > 3) && cidadeEstadoRegex.test(value)});
         break;
       case "telefone":
         formErrors.telefone = (numeroRegex.test(value) && value.length <= 19 && value.length >= 17)
           ? ""
           : "exemplo +55 (11) 11111-1111";
-          this.setState({aprovado: (numeroRegex.test(value) && value.length <= 19 && value.length >= 17)});
+          this.setState({aprovadoTelefone: (numeroRegex.test(value) && value.length <= 19 && value.length >= 17)});
         break;
       case "estado":
         formErrors.estado =
         (value.length > 3) && cidadeEstadoRegex.test(value) ? "" : "Estado invalido";
-        this.setState({aprovado: (value.length > 3) && cidadeEstadoRegex.test(value)});
+        this.setState({aprovadoEstado: (value.length > 3) && cidadeEstadoRegex.test(value)});
         break;
       case "email":
         formErrors.email = emailRegex.test(value)
           ? ""
           : "email invalido";
-          this.setState({aprovado: emailRegex.test(value)});
+          this.setState({aprovadoEmail: emailRegex.test(value)});
         break;
       case "emailLogin":
         formErrors.emailLogin = emailRegex.test(value)
@@ -168,12 +171,12 @@ export default class App extends React.Component {
           value.length < 6 ? "minimo 6 caracteres" : "";
         formErrors.confirmarSenha =
           this.state.confirmarSenha !== value ? "Por favor insira a mesma senha novamente" : "";
-          this.setState({aprovado: this.state.confirmarSenha !== value});
+          this.setState({aprovadoSenha: this.state.confirmarSenha === value});
         break;
         case "confirmarSenha":
           formErrors.confirmarSenha =
             value !== this.state.password ? "Por favor insira a mesma senha novamente" : "";
-            this.setState({aprovado: value !== this.state.password });
+            this.setState({aprovadoConfirmarSenha: value === this.state.password });
           break;
       default:
         break;

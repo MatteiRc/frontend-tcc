@@ -23,15 +23,15 @@ class ProvedorServico extends Component {
                 preco: data[i].valor+'/hora',
                 nome: data[i].usuario,
                 info: data[i].descricao,
+                horario: data[i].horarios, 
+                cidade: data[i].cidade,
                 favorito: false
             };
             arr.push(servico);
         }                                                    
         this.setServicos(arr);
     })
-
     }
-
     setServicos = (servico) => {
         let servic = [];
         servico.forEach(item =>{

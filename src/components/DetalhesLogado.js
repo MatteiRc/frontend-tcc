@@ -4,16 +4,16 @@ import {Link} from 'react-router-dom';
 import {ButtonServicos, ButtonFavorito} from './Button.js';
 import '../App.css'
 import { servicos, detalheServico} from '../data.js';
-import NavbarServLogado from './NavBarServLogado.js';
+import NavBarLogado from './NavBarLogado.js';
 export default class Detalhes extends Component {
     render() {
         return (
             <ConsumidorServico>
                 {valor=>{
-                    const {id, nome, img, info, preco, titulo, favorito} = valor.detalheServico;
+                    const {id, nome, img, info, preco, titulo, cidade, horario} = valor.detalheServico;
                     return (
                         <React.Fragment>
-                        <NavbarServLogado/>
+                        <NavBarLogado />
                         <div className="container py-5">
                             <div className="row">
                                 <div className="text-title-trabalho col-10 mx-auto text-center text-slanted my-5">
@@ -22,7 +22,8 @@ export default class Detalhes extends Component {
                             </div>
                             <div className="row">
                                 <div className="col-10 mx-auto col-md-6 my-3 ">
-                                    <img id="imag" src={img} className="img-fluid" alt="servico"/>
+                                    <img id="imag" src={img} className="img-fluid" alt="servico"/> 
+                                    <br/>
                                     <Link to='/chat'>
                                             <ButtonServicos>
                                                 <span className="mr-2"> 
@@ -41,18 +42,12 @@ export default class Detalhes extends Component {
                                     <h4>
                                         <p id="preco">Preço: R${preco} 
                                             &emsp;&emsp;
-                                            <ButtonFavorito className="card-btn" onClick={()=>{
-                                            if(favorito == false)
-                                                valor.addToFavoritos(id);
-                                            else
-                                                valor.removeItem(id);
-                                            }}> Favorito -> 
-                                            {favorito ? (
-                                                <i id="favoritado" className="fas fa-star"></i>
-                                            ) : (
-                                                <i className="fas fa-star"></i>
-                                            )}
-                                    </ButtonFavorito>
+                                        </p>
+                                        <p id="cidade">Cidade: {cidade} 
+                                            &emsp;&emsp;
+                                        </p>
+                                        <p id="horario">{horario}
+                                            &emsp;&emsp;
                                         </p>
                                     </h4>
                                     <h4 id="informacao">DESCRIÇÃO SOBRE O SERVIÇO</h4>
