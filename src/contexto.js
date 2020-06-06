@@ -25,6 +25,7 @@ class ProvedorServico extends Component {
                 info: data[i].descricao,
                 horario: data[i].horarios, 
                 cidade: data[i].cidade,
+                classificacao: (data[i].classificacao/data[i].total),
                 favorito: false
             };
             arr.push(servico);

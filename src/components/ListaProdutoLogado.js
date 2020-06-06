@@ -35,6 +35,7 @@ export default class ListaProduto extends Component {
         preco: data[i].valor+'/hora',
         nome: data[i].usuario,
         info: data[i].descricao,
+        classificacao: (data[i].classificacao/data[i].total),
         favorito: false
       }
       arr.push(servico);
