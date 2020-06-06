@@ -30,6 +30,7 @@ export default class ListaProduto extends Component {
   .then(res =>{
     let arr = new Array();
     let data = JSON.parse(JSON.stringify(res.data));
+    //console.log(data);
     for(let i = 0; i < data.length; i++){
       let servico = {
         id: data[i].id,
@@ -38,6 +39,7 @@ export default class ListaProduto extends Component {
         preco: data[i].valor+'/hora',
         nome: data[i].usuario,
         info: data[i].descricao,
+        classificacao: (data[i].classificacao/data[i].total),
         favorito: false
       }
       arr.push(servico);
