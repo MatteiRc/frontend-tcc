@@ -21,7 +21,7 @@ export const ButtonServicos = styled.button`
 text-transform:capitalize;
 font-size:1.4rem;
 background:transparent;
-border:0.05rem solid var(--mainDark);
+border:0.00rem solid var(--mainDark);
 color: var(--mainDark);
 border-radius: 0.5rem;
 padding: 0.2rem 0.5rem;
