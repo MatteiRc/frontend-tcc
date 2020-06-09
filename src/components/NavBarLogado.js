@@ -18,6 +18,7 @@ export default class Navbar extends Component{
                 </div>
                     <a href="http://localhost:3000/servicos">Criar Serviço</a>
                     <a href="http://localhost:3000/editarcadastro">Editar Cadastro</a>
+                    <a href="http://localhost:3000/listaservicos">Seus Servicos</a>
                     <div class="topnav-right">
                     <a href="http://localhost:3002">Chat</a>
                     <a href="http://localhost:3000" onClick={this.clear}>Sair da Conta</a>

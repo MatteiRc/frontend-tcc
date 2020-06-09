@@ -15,6 +15,8 @@ import LoginCadastro from './components/login/src/index.js';
 import ListaProduto from './components/ListaProdutoLogado.js';
 import DetalhesLogado from './components/DetalhesLogado.js';
 import EditarCadastro from './components/EditarCadastro.js';
+import ListaServicos from './components/ListaServicos.js';
+import EditarServicos from './components/EditarServico.js';
 function App() {
   return (
     <React.Fragment>
@@ -28,6 +30,8 @@ function App() {
         <Route path="/servicos" component={Servicos} />
         <Route path="/usuariologado" component={ListaProduto} />
         <Route path="/editarcadastro" component={EditarCadastro} />
+        <Route path="/listaservicos" component={ListaServicos} />
+        <Route path="/editarservicos" component={EditarServicos} />
         <Route component={Default} />
         <Navbar />
         <NavBarFav />

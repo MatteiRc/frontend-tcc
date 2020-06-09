@@ -34,6 +34,23 @@ margin: 0.2rem 0.5rem 0.2rem 0;
     outline: none;
 }
 `;
+export const ButtonDelete = styled.button`
+text-transform:capitalize;
+font-size:1.4rem;
+background:transparent;
+border:0.00rem solid var(--mainDark);
+color: var(--mainDark);
+border-radius: 0.5rem;
+padding: 0.2rem 0.5rem;
+cursor: pointer;
+margin: 0.2rem 0.5rem 0.2rem 0;
+&:hover i{
+    color: var(--mainRed);
+}
+&:focus{
+    outline: none;
+}
+`;
 export const ButtonFavorito = styled.button`
 font-size:1.4rem;
 border:0.00rem;

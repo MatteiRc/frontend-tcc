@@ -2,45 +2,28 @@ import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
 import logo from '../logo.png';
 import styled from 'styled-components';
-import {ButtonContainer, ButtonServicos} from './Button.js';
+import {ButtonContainer, ButtonServicos, ButtonVoltar} from './Button.js';
+import './navBarstyle.css';
 
-export default class NavbarServ extends Component{
+export default class Navbar extends Component{
+
+    clear = e => {
+        window.localStorage.clear();
+    }
     render(){
-        return (<NavWrapper className = "navbar navbar-expand-sm navbar-dark px-sm-5" >
-            
-                    <Link to='/usuariologado'>
-                        <img src={logo} alt="principal" className="navbar-brand"/>        
-                    </Link>    
-                    <ul className="navbar-nav align-items-center">
-                        <li className="nav-item ml-5">
-                            <Link to="/usuariologado" className="nav-link">
-                                <ButtonServicos>
-                                    <span className="mr-2"> 
-                                        <i className="fas fa-handshake"></i>
-                                    </span>
-                                    Serviços
-                                </ButtonServicos>
-                            </Link>   
-                        </li> 
-                    </ul>
-                    <Link to='/favoritos' className="ml-auto">
-                        <ButtonContainer>
-                            <span className="mr-2">
-                                <i className="fas fa-star" />
-                            </span>
-                            favoritos
-                        </ButtonContainer>
-                    </Link>
-                </NavWrapper>
+        return (
+            <div class="topnav">
+                <div class="topnav-centered">
+                <a href="http://localhost:3000/usuariologado">Serviços</a>
+                </div>
+                    <a href="http://localhost:3000/servicos">Criar Serviço</a>
+                    <a href="http://localhost:3000/editarcadastro">Editar Cadastro</a>
+                    <a href="http://localhost:3000/listaservicos" class="active">Seus Servicos</a>
+                    <div class="topnav-right">
+                    <a href="http://localhost:3002">Chat</a>
+                    <a href="http://localhost:3000" onClick={this.clear}>Sair da Conta</a>
+                </div>
+            </div>
             );
     }
 }
-
-const NavWrapper = styled.nav`
-    background: var(--mainColor);
-    .nav-link{
-        color: var(--mainWhite) !important;
-        font-size:1.5rem;
-        text-transform: capitalize;
-    }
-`;
