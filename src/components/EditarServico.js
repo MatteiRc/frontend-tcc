@@ -111,14 +111,15 @@ export default class Servico extends Component{
                 </div>
                 <div class = "File">
                 <br/>
-                <label for = "imagem">Escolha uma imagem do Serviço para cadastrar</label>
+                <label for = "imagem">Está insatisfeito com a foto ? Pode alterá-la quando quiser !</label>
                 <input type = "file" name="imagem" id="imagem" accept = "imagem/*" onChange ={ e => this.fileSelect(e) }/>
                 <br/>
                 <img id="foto" width = "100"/>
                 <br/>
                 </div>
                 <div class = "Button area">
-                <button id = "cadastrarservico" type = "submit" disabled = {this.state.isEmpty}>Cadastrar Serviço</button>
+                <button id = "cadastrarservico" type = "submit" disabled = {this.state.isEmpty}>Atualizar Serviço</button>
+                <button id = "cadastrarservico" type = "submit" disabled = {this.state.isEmpty}>Deletar Serviço</button>
                 </div>
             </div>
              </form>
