@@ -57,8 +57,10 @@ export default class Servico extends Component{
          data.append("titulo",this.state.anuncio.titulo);
          Axios.post(url,data).then(res=>{
              console.log(res);
+             window.localStorage.removeItem("id_servico");
+             window.location.href = "http://localhost:3000/listaservicos";
+
          })
-         window.location.href = "http://localhost:3000/listaservicos";
 
      }
 

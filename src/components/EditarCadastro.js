@@ -81,7 +81,7 @@ export default class App extends React.Component {
   handleSubmit = e => {
       e.preventDefault();
       const usuario = {
-        nome: this.state.nome + ' ' + this.state.sobrenome,
+        nome: this.state.nome,
         senha: this.state.password,
         telefone: this.state.telefone,
         estado: this.state.estado,
@@ -95,12 +95,12 @@ export default class App extends React.Component {
        this.state.aprovadoEstado === true && this.state.aprovadoCidade === true && 
        this.state.aprovadoTelefone === true){
 
-        axios.post('http://localhost:3001/updateUsuario',usuario)
+        axios.post('http://localhost:3001/updateUsuario/'+id_usuario,usuario)
        .then(res =>{
         localStorage.setItem("id_usuario", res.data);
-         console.log(res.data);
+         window.location.href = "http://localhost:3000/usuariologado";
        })
-       window.location.href = "http://localhost:3000/usuariologado";
+       
     }else{
       alert('Parece que o cadastro ainda está incompleto');
       console.log(this.state.aprovadoNome === true, this.state.aprovadoSobrenome === true, 
@@ -193,7 +193,7 @@ export default class App extends React.Component {
         break;
     }
 
-    this.setState({ formErrors, [name]: value }, () => console.log(this.state));
+    this.setState({ formErrors, [name]: value }, /*() => console.log(this.state)*/);
   };
   Message (state)  {
     const { formErrors } = this.state;
