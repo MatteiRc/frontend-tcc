@@ -48,14 +48,14 @@ export default class Detalhes extends Component {
                                 <div className="col-10 mx-auto col-md-6 my-3 ">
                                     <img id="imag" src={img} className="img-fluid" alt="servico"/> 
                                     <br/>
-                                    <Link to='/chat'>
+                                    <a href = 'http://localhost:3002/'>
                                             <ButtonServicos>
                                                 <span className="mr-2"> 
                                                     <i class="fas fa-comments"></i>
                                                 </span>
                                                 Conversar
                                             </ButtonServicos>
-                                    </Link>
+                                    </a>
                                 </div>
                                 <div className="col-10 mx-auto col-md-6 my-3 text-capitalize">
                                     <h4 className="text-autor text-uppercase mt-3 mb-2">

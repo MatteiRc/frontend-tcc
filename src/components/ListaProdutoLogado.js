@@ -57,14 +57,14 @@ export default class ListaProduto extends Component {
                             <Link to="/detalheslogado">
                                 <img src={servico.img} alt="product" className="card-img-top" />  
                             </Link>
-                            <Link to='/chat'>
+                            <a href = 'http://localhost:3002/'>
                                 <ButtonServicos className="card-btn">
                                     <span className="mr-2">
                                       <i class="fas fa-comments"></i>
                                     </span>
                                       Conversar
                                </ButtonServicos>
-                            </Link>
+                            </a>
                         </div>
                     )}
             </ConsumidorServico>
