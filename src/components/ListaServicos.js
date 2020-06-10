@@ -17,13 +17,14 @@ import {
 export default class ListaServicos extends Component {
 
   state = {
+    id_usuario: localStorage.getItem("id"),
     search: "",
     servicos:[]
   };
 
  
  componentDidMount(){
-  axios.get("http://localhost:3001/anuncios")
+  axios.get("http://localhost:3001/anuncio/"+this.state.id_usuario)
   .then(res =>{
     let arr = new Array();
     let data = JSON.parse(JSON.stringify(res.data));
@@ -45,6 +46,10 @@ export default class ListaServicos extends Component {
   })
  }
 
+ StoreId(id){
+   window.localStorage.setItem("id_servico",id);
+ }
+
   renderservico = servico => {
     const { search } = this.state;
     var code = servico.id;
@@ -54,7 +59,7 @@ export default class ListaServicos extends Component {
             <ConsumidorServico>
                     {valor => (
                         <div className="img-container p-3" onClick={()=> valor.handleDetalhe(servico.id)}> 
-                            <Link to="/editarservicos">
+                            <Link to="/editarservicos" onClickCapture = {this.StoreId(servico.id)}>
                                 <img src={servico.img} alt="product" className="card-img-top" />  
                             </Link>
                             <Link to='/chat'>

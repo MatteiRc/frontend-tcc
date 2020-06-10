@@ -113,6 +113,17 @@ export default class App extends React.Component {
       //console.error("FORM INVALID - DISPLAY ERROR MESSAGE");
   };
 
+  delete(e){
+    e.preventDefault()
+    window.confirm("ola");
+    /*if(window.confirm("Deseja realmente deletar sua conta?"))
+    axios.post("http://localhost:3001/deletarUsuario/"+id_usuario).then(res=>{
+      localStorage.clear()
+      alert("Sua conta foi deletada com sucesso");
+      //window.location.href= "http://localhost:3000/";
+    }).catch(error => {alert("Não foi possível deletar a conta");})*/
+  }
+
   handleLogin = e =>{
    e.preventDefault();
 
@@ -304,7 +315,7 @@ export default class App extends React.Component {
             </div>
             <div className="createAccount">
               <button type="submit">Atualizar</button>
-              <small className="clique">Deletar Conta</small>
+              <button className="clique" onclick = {e => this.delete(e)}>Deletar Conta</button>
             </div>
           </form>
         </div>
