@@ -15,6 +15,7 @@ const InitialState ={
     horarios:"",
     valor:"",
     imagem:"",
+    categorias:"",
     classificacao:0},
     idUsuario:"",
     isInvalid: false,
@@ -38,6 +39,7 @@ export default class Servico extends Component{
          data.append("horarios",this.state.anuncio.horarios);
          data.append("valor",this.state.anuncio.valor);
          data.append("titulo",this.state.anuncio.titulo);
+         data.append("categoria",this.state.anuncio.categorias);
          Axios.post(url,data).then(res=>{
              console.log(res);
          })
@@ -48,8 +50,9 @@ export default class Servico extends Component{
      updateField(event){
          const anuncio = {...this.state.anuncio};
          let isEmpty = false;
+         console.log(event.target.value);
          anuncio[event.target.name] = event.target.value;
-         if(anuncio.cidade == "" || anuncio.descricao == "" || anuncio.horarios == "" || anuncio.valor == "" || anuncio.titulo == "")
+         if(anuncio.cidade == "" || anuncio.descricao == "" || anuncio.horarios == "" || anuncio.valor == "" || anuncio.titulo == "" || anuncio.categorias == "")
              isEmpty = true;
              this.setState({anuncio,isEmpty});
 
@@ -58,6 +61,14 @@ export default class Servico extends Component{
      displayImg(event){
          let img = document.getElementById("foto");
          img.src = URL.createObjectURL(event.target.files[0]);
+
+     }
+
+     handleCheck(event){
+         let categorias;
+         if(event.target.checked)
+         categorias = event.target.value;
+         console.log(categorias);
 
      }
 
@@ -102,6 +113,18 @@ export default class Servico extends Component{
                 <label for = "horarios">Horários disponíveis</label>
                 <br/>
                 <input type = "text" name = "horarios" id = "horarios" onChange = {e => this.updateField(e)}/>
+                </div>
+                <div class = "check boxes">
+                    <br/>
+                    <input type = "checkbox" id = "aula particular" name ="categorias" value = "Aula Particular" onChange = {e => this.updateField(e)}/>
+                    <label for = "aula particular"> Aula Particular</label>
+                    <br/>
+                    <input type = "checkbox" id = "servicos domesticos" name = "categorias" value = "Serviços Domesticos" onChange = {e => this.updateField(e)}/>
+                    <label for = "servicos domesticos"> Serviços Domesticos</label>
+                    <br/>
+                    <input type = "checkbox" id = "consertos" name = "categorias" value = "Consertos" onChange = {e => this.updateField(e)}/>
+                    <label for = "consertos">Consertos</label>
+                    <br/>
                 </div>
                 <div class = "Number area">
                 <br/>
