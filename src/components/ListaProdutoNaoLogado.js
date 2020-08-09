@@ -17,6 +17,7 @@ import axios from 'axios';
 export default class ListaProduto extends Component {
 
   state = {
+    filtros:"",
     search: "",
     servicos:[]
   };
@@ -26,6 +27,30 @@ export default class ListaProduto extends Component {
    if("id" in localStorage)
    window.location.href = "http://localhost:3000/usuariologado";
    else{
+  if("filtros" in localStorage)
+  {
+    axios.get("http://localhost:3001/anuncioCategoria/"+window.localStorage.getItem("filtros")).then(res=>{
+      let arr = new Array();
+      let data = JSON.parse(JSON.stringify(res.data));
+      //console.log(data);
+      for(let i = 0; i < data.length; i++){
+        let servico = {
+          id: data[i].id,
+          titulo: data[i].titulo,
+          img: "http://localhost:3001/"+data[i].imagem,
+          preco: data[i].valor+'/hora',
+          nome: data[i].usuario,
+          info: data[i].descricao,
+          classificacao: (data[i].classificacao/data[i].total),
+          categorias: data[i].categoria,
+          favorito: false
+        }
+        arr.push(servico);
+      }
+        this.setState({servicos:arr});
+    })
+  }
+  else{
   axios.get("http://localhost:3001/anuncios")
   .then(res =>{
     let arr = new Array();
@@ -40,13 +65,15 @@ export default class ListaProduto extends Component {
         nome: data[i].usuario,
         info: data[i].descricao,
         classificacao: (data[i].classificacao/data[i].total),
+        categorias: data[i].categoria,
         favorito: false
       }
       arr.push(servico);
     }
     this.setState({servicos:arr});
-    console.log(this.state.servicos);
+    //console.log(this.state.servicos);
   })
+}
 }
  }
   renderservico = servico => {
@@ -96,15 +123,52 @@ export default class ListaProduto extends Component {
     this.setState({ search: e.target.value });
   };
 
+
+  criaFiltro(event){
+    let servico;
+    if(this.state.filtros != ""){
+    servico = this.state.filtros;
+    servico += "," + event.target.value;
+    }
+    else
+    servico = event.target.value;
+    this.setState({filtros:servico});
+  };
+
+  aplicarFiltro = e => {
+    window.localStorage.setItem("filtros",this.state.filtros);
+    window.location.reload();
+  }
+
+  limparFiltro = e => {
+    window.localStorage.removeItem("filtros");
+    window.location.reload();
+  }
+
+ 
+
   render() {
     const { search } = this.state;
     const filteredServicos = this.state.servicos.filter(servico => {
       return servico.titulo.toLowerCase().indexOf(search.toLowerCase()) !== -1;
     });
-
     return (
       <div className="flyout">
         <NavbarInicio/>  
+        <div classname = "filtos">
+          <input type ="checkbox" name = "categorias" id = "aula particular" value = "Aula Particular" onChange = {e => this.criaFiltro(e)}/>
+          <label for = "aula particular">Aula Particular</label>
+          <br/>
+          <input type = "checkbox" name = "categorias" id = "servicos domesticos" value = "Serviços Domesticos" onChange = {e => this.criaFiltro(e)}/>
+          <label for = "servicos domesticos">Serviços Domesticos</label>
+          <br/>
+          <input type = "checkbox" name = "categorias" id= "consertos" value = "Consertos" onChange = {e => this.criaFiltro(e)}/>
+          <label for = "consertos">Consertos</label>
+          <br/>
+          <button id = "aplicar filtros" onClick = {this.aplicarFiltro}>Aplicar filtros</button>
+          <br/>
+          <button id = "limpar filtros" onClick = {this.limparFiltro}>Limpar filtros</button>
+        </div>
         <main style={{ marginTop: "4rem" }}>
           <div className="container">
             <div className="row">
