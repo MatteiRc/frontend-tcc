@@ -50,7 +50,7 @@ export default class Servico extends Component{
      updateField(event){
          const anuncio = {...this.state.anuncio};
          let isEmpty = false;
-         console.log(event.target.value);
+         //console.log(event.target.value);
          anuncio[event.target.name] = event.target.value;
          if(anuncio.cidade == "" || anuncio.descricao == "" || anuncio.horarios == "" || anuncio.valor == "" || anuncio.titulo == "" || anuncio.categorias == "")
              isEmpty = true;
@@ -65,11 +65,37 @@ export default class Servico extends Component{
      }
 
      handleCheck(event){
-         let categorias;
-         if(event.target.checked)
-         categorias = event.target.value;
-         console.log(categorias);
-
+         const anuncio = {...this.state.anuncio};
+         let isEmpty = false;
+         if(event.target.checked){
+             let categoria;
+             if(this.state.anuncio.categorias != ""){
+             categoria = this.state.anuncio.categorias;
+             categoria += ","+event.target.value;
+             }
+             else
+             categoria = event.target.value;
+             anuncio[event.target.name]=categoria
+             if(anuncio.cidade == "" || anuncio.descricao == "" || anuncio.horarios == "" || anuncio.valor == "" || anuncio.titulo == "" || anuncio.categorias == "")
+             isEmpty = true;
+             console.log(categoria);
+             this.setState({anuncio,isEmpty});
+         }
+         else{
+             let categorias = this.state.anuncio.categorias;
+             let nova_categoria;
+             if(categorias.includes(","+event.target.value))
+             nova_categoria = categorias.replace(","+event.target.value,"");
+             else if(categorias.includes(event.target.value+","))
+             nova_categoria = categorias.replace(event.target.value+",","");
+             else
+             nova_categoria = categorias.replace(event.target.value,"");
+             anuncio[event.target.name] = nova_categoria;
+             if(anuncio.cidade == "" || anuncio.descricao == "" || anuncio.horarios == "" || anuncio.valor == "" || anuncio.titulo == "" || anuncio.categorias == "")
+             isEmpty = true;
+             console.log(nova_categoria);
+             this.setState({anuncio,isEmpty});
+         }
      }
 
      fileSelect(event){
@@ -116,13 +142,13 @@ export default class Servico extends Component{
                 </div>
                 <div class = "check boxes">
                     <br/>
-                    <input type = "checkbox" id = "aula particular" name ="categorias" value = "Aula Particular" onChange = {e => this.updateField(e)}/>
+                    <input type = "checkbox" id = "aula particular" name ="categorias" value = "Aula Particular" onChange = {e => this.handleCheck(e)}/>
                     <label for = "aula particular"> Aula Particular</label>
                     <br/>
-                    <input type = "checkbox" id = "servicos domesticos" name = "categorias" value = "Serviços Domesticos" onChange = {e => this.updateField(e)}/>
+                    <input type = "checkbox" id = "servicos domesticos" name = "categorias" value = "Serviços Domesticos" onChange = {e => this.handleCheck(e)}/>
                     <label for = "servicos domesticos"> Serviços Domesticos</label>
                     <br/>
-                    <input type = "checkbox" id = "consertos" name = "categorias" value = "Consertos" onChange = {e => this.updateField(e)}/>
+                    <input type = "checkbox" id = "consertos" name = "categorias" value = "Consertos" onChange = {e => this.handleCheck(e)}/>
                     <label for = "consertos">Consertos</label>
                     <br/>
                 </div>

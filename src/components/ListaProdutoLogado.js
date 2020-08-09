@@ -119,6 +119,8 @@ export default class ListaProduto extends Component {
   };
 
   criaFiltro(event){
+
+    if(event.target.checked){
     let servico;
     if(this.state.filtros != ""){
     servico = this.state.filtros;
@@ -127,6 +129,20 @@ export default class ListaProduto extends Component {
     else
     servico = event.target.value;
     this.setState({filtros:servico});
+  }
+   else{
+       // esse treho funciona mas não está, precisa ser revisto depois
+       let filtros_escolhidos = this.state.filtros;
+       let novo_filtro;
+       if(filtros_escolhidos.includes(","+event.target.value))
+       novo_filtro = filtros_escolhidos.replace(","+event.target.value,"");
+       else if(filtros_escolhidos.includes(event.target.value+",")) 
+       novo_filtro =filtros_escolhidos.replace(event.target.value+",","");
+       else
+       novo_filtro = filtros_escolhidos.replace(event.target.value,"");
+       this.setState({filtros:novo_filtro});
+       console.log("novo filtro: "+novo_filtro);
+   }
   };
 
   aplicarFiltro = e => {
