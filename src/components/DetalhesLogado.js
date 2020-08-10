@@ -24,7 +24,6 @@ export default class Detalhes extends Component {
         let classificacao = {classificacao: parseInt(this.state.classificacao)};
         console.log(classificacao);
         Axios.post("http://localhost:3001/updateAnuncio/novaClassificacao/"+id,classificacao).then(res=>{
-            console.log(classificacao);
             alert("Classificao enviada");
         }).catch(error => alert("Não foi possivel enviar a classificação"));
     }

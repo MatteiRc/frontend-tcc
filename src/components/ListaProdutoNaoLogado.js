@@ -17,7 +17,12 @@ import axios from 'axios';
 export default class ListaProduto extends Component {
 
   state = {
-    filtros:"",
+    filtros:{
+      cidade:"",
+      valor:"",
+      classificacao:"",
+      categorias:""
+    },
     search: "",
     servicos:[]
   };
@@ -29,7 +34,15 @@ export default class ListaProduto extends Component {
    else{
   if("filtros" in localStorage)
   {
-    axios.get("http://localhost:3001/anuncioCategoria/"+window.localStorage.getItem("filtros")).then(res=>{
+    let filtro = JSON.parse(window.localStorage.getItem("filtros"));
+    const filtros = {
+      cidade: filtro.cidade,
+      valor : filtro.valor,
+      classificacao: filtro.classificacao,
+      categoria: filtro.categorias
+    };
+    console.log(filtros);
+    axios.post('http://localhost:3001/anuncioFiltro',filtros).then(res =>{
       let arr = new Array();
       let data = JSON.parse(JSON.stringify(res.data));
       //console.log(data);
@@ -41,13 +54,14 @@ export default class ListaProduto extends Component {
           preco: data[i].valor+'/hora',
           nome: data[i].usuario,
           info: data[i].descricao,
-          classificacao: (data[i].classificacao/data[i].total),
+          classificacao: data[i].classificacao,
           categorias: data[i].categoria,
           favorito: false
         }
         arr.push(servico);
       }
-        this.setState({servicos:arr});
+      this.setState({servicos:arr});
+      //console.log(this.state.servicos);
     })
   }
   else{
@@ -64,12 +78,13 @@ export default class ListaProduto extends Component {
         preco: data[i].valor+'/hora',
         nome: data[i].usuario,
         info: data[i].descricao,
-        classificacao: (data[i].classificacao/data[i].total),
+        classificacao: data[i].pontuacao,
         categorias: data[i].categoria,
         favorito: false
       }
       arr.push(servico);
     }
+    console.log(arr)
     this.setState({servicos:arr});
     //console.log(this.state.servicos);
   })
@@ -125,34 +140,35 @@ export default class ListaProduto extends Component {
 
 
   criaFiltro(event){
+    const filtros = {...this.state.filtros};
+    let nome = event.target.name;
     if(event.target.checked == true){
       let servico;
-      if(this.state.filtros != ""){
-      servico = this.state.filtros;
+      if(this.state.filtros[nome] != ""){
+      servico = this.state.filtros[nome];
       servico += "," + event.target.value;
       }
       else
       servico = event.target.value;
-      this.setState({filtros:servico});
-      console.log(servico)
+      filtros[nome] = servico;
+      this.setState({filtros});
     }
      else{
        // esse treho funciona mas não está, precisa ser revisto depois
-      let filtros_escolhidos = this.state.filtros;
-      let novo_filtro;
-      if(filtros_escolhidos.includes(","+event.target.value))
-      novo_filtro = filtros_escolhidos.replace(","+event.target.value,"");
-      else if(filtros_escolhidos.includes(event.target.value+",")) 
-      novo_filtro = filtros_escolhidos.replace(event.target.value+",","");
-      else
-      novo_filtro = filtros_escolhidos.replace(event.target.value,"");
-      this.setState({filtros:novo_filtro});
-      console.log("novo filtro: "+novo_filtro);
+       let novo_filtro = filtros[nome];
+       if(novo_filtro.includes(","+event.target.value))
+       novo_filtro = novo_filtro.replace(","+event.target.value,",");
+       else if(novo_filtro.includes(event.target.value+","))
+       novo_filtro = novo_filtro.replace(event.target.value+",","");
+       else
+       novo_filtro = novo_filtro.replace(event.target.value,"");
+       filtros[nome] = novo_filtro;
+       this.setState({filtros});
      }
   };
 
   aplicarFiltro = e => {
-    window.localStorage.setItem("filtros",this.state.filtros);
+    window.localStorage.setItem("filtros",JSON.stringify(this.state.filtros));
     window.location.reload();
   }
 
@@ -171,7 +187,8 @@ export default class ListaProduto extends Component {
     return (
       <div className="flyout">
         <NavbarInicio/>  
-        <div classname = "filtos">
+        <div classname = "filtros">
+          <p>Filtros</p>
           <input type ="checkbox" name = "categorias" id = "aula particular" value = "Aula Particular" onChange = {e => this.criaFiltro(e)}/>
           <label for = "aula particular">Aula Particular</label>
           <br/>
