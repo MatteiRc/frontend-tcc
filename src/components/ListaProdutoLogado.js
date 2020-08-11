@@ -18,7 +18,7 @@ export default class ListaProduto extends Component {
 
   state = {
     filtros:{
-      categoria:"",
+      cidade:"",
       valor:"",
       classificacao:"",
       categorias:""
@@ -163,7 +163,7 @@ export default class ListaProduto extends Component {
   };
 
   aplicarFiltro = e => {
-    window.localStorage.setItem("filtros",this.state.filtros);
+    window.localStorage.setItem("filtros",JSON.stringify(this.state.filtros));
     window.location.reload();
   }
 
@@ -183,7 +183,7 @@ export default class ListaProduto extends Component {
       <div className="flyout">
         <NavBarLogado /> 
         <div classname = "filtros">
-          <h1>Filtros:</h1>
+          <p>Filtros:</p>
           <input type ="checkbox" name = "categorias" id = "aula particular" value = "Aula Particular" onChange = {e => this.criaFiltro(e)}/>
           <label for = "aula particular">Aula Particular</label>
           <br/>
