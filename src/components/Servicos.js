@@ -10,12 +10,12 @@ import Axios from 'axios';
 const baseUrl = "http://localhost:3001/fazeranuncio";
 const InitialState ={
     anuncio:{titulo:"",
-    cidade:"",
+    cidade: null,
     descricao:"",
     horarios:"",
-    valor:"",
+    valor: 10,
     imagem:"",
-    categorias:"",
+    categorias: null,
     classificacao:0},
     idUsuario:"",
     isInvalid: false,
@@ -119,55 +119,34 @@ export default class Servico extends Component{
                 </form>
                 <div class = "form">
                 <div class = "input area">
-                <label for = "titulo">Titulo do Serviço</label>
+                <label for = "titulo">Objetivo</label>
                 <br/>
                 <input type = "text" name = "titulo" id = "titulo" onChange ={e => this.updateField(e)}/>
                 </div>
                 <div class = "input area">
-                <label for = "cidade">Cidade</label>
-                <br/>
-                <input type = "text" name = "cidade" id="cidade" onChange = {e =>this.updateField(e)}/>
                 </div>
                 <div class = "input area">
                 <br/>
-                <label for = "descricao">Descrição</label>
+                <label for = "descricao">Resumo de Qualificações</label>
                 <br/>
                 <textarea type = "text" name = "descricao" id = "descricao" onChange = {e => this.updateField(e)}/>
                 </div>
                 <div class = "input area">
                 <br/>
-                <label for = "horarios">Horários disponíveis</label>
+                <label for = "horarios">Formação Acadêmica</label>
                 <br/>
-                <input type = "text" name = "horarios" id = "horarios" onChange = {e => this.updateField(e)}/>
-                </div>
-                <div class = "check boxes">
-                    <br/>
-                    <input type = "checkbox" id = "aula particular" name ="categorias" value = "Aula Particular" onChange = {e => this.handleCheck(e)}/>
-                    <label for = "aula particular"> Aula Particular</label>
-                    <br/>
-                    <input type = "checkbox" id = "servicos domesticos" name = "categorias" value = "Serviços Domesticos" onChange = {e => this.handleCheck(e)}/>
-                    <label for = "servicos domesticos"> Serviços Domesticos</label>
-                    <br/>
-                    <input type = "checkbox" id = "consertos" name = "categorias" value = "Consertos" onChange = {e => this.handleCheck(e)}/>
-                    <label for = "consertos">Consertos</label>
-                    <br/>
-                </div>
-                <div class = "Number area">
-                <br/>
-                <label for = "valor">Valor do serviço/hora</label>
-                <br/>
-                <input type = "number" id = "valor" name = "valor" min = "0" max = "100000"  step = "0.01" onChange ={e => this.updateField(e)}/>
+                <textarea type = "text" name = "horarios" id = "horarios" onChange = {e => this.updateField(e)}/>
                 </div>
                 <div class = "File">
                 <br/>
-                <label for = "imagem">Escolha uma imagem do Serviço para cadastrar</label>
+                <label for = "imagem">Escolha uma foto para o currículo</label>
                 <input type = "file" name="imagem" id="imagem" accept = "imagem/*" onChange ={ e => this.fileSelect(e) }/>
                 <br/>
                 <img id="foto" width = "100"/>
                 <br/>
                 </div>
                 <div class = "Button area">
-                <button id = "cadastrarservico" type = "submit" disabled = {this.state.isEmpty}>Cadastrar Serviço</button>
+                <button id = "cadastrarservico" type = "submit" disabled = {this.state.isEmpty}>Cadastrar Currículo</button>
                 </div>
             </div>
              </form>

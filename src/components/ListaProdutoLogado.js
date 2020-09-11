@@ -83,14 +83,6 @@ export default class ListaProduto extends Component {
                             <Link to="/detalheslogado">
                                 <img src={servico.img} alt="product" className="card-img-top" />  
                             </Link>
-                            <a href = 'http://localhost:3002/'>
-                                <ButtonServicos className="card-btn">
-                                    <span className="mr-2">
-                                      <i class="fas fa-comments"></i>
-                                    </span>
-                                      Conversar
-                               </ButtonServicos>
-                            </a>
                         </div>
                     )}
             </ConsumidorServico>
@@ -102,10 +94,6 @@ export default class ListaProduto extends Component {
                         {servico.titulo}
                     </Link>
                     </p>
-                    <h5 className="font-italic mb-0">
-                        <span className="mr-1">R$</span>
-                        {servico.preco}
-                    </h5>
               </div>
             )}
             </ConsumidorServico>
@@ -165,26 +153,12 @@ export default class ListaProduto extends Component {
     return (
       <div className="flyout">
         <NavBarLogado /> 
-        <div classname = "filtos">
-          <input type ="checkbox" name = "categorias" id = "aula particular" value = "Aula Particular" onChange = {e => this.criaFiltro(e)}/>
-          <label for = "aula particular">Aula Particular</label>
-          <br/>
-          <input type = "checkbox" name = "categorias" id = "servicos domesticos" value = "Serviços Domesticos" onChange = {e => this.criaFiltro(e)}/>
-          <label for = "servicos domesticos">Serviços Domesticos</label>
-          <br/>
-          <input type = "checkbox" name = "categorias" id= "consertos" value = "Consertos" onChange = {e => this.criaFiltro(e)}/>
-          <label for = "consertos">Consertos</label>
-          <br/>
-          <button id = "aplicar filtros" onClick = {this.aplicarFiltro}>Aplicar filtros</button>
-          <br/>
-          <button id = "limpar filtros" onClick = {this.limparFiltro}>Limpar filtros</button>
-        </div>
         <main style={{ marginTop: "4rem" }}>
           <div className="container">
             <div className="row">
-              <div className="col">
+            <div className="col">
                 <center>
-                  <Titulo nome="Nossos" titulo="Serviços"></Titulo>
+                  <Titulo nome="Seus" titulo="Currículos"></Titulo>
                   <p>
                   <span>
                     <i class="fas fa-search"></i>

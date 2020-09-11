@@ -48,52 +48,24 @@ export default class Detalhes extends Component {
                                 <div className="col-10 mx-auto col-md-6 my-3 ">
                                     <img id="imag" src={img} className="img-fluid" alt="servico"/> 
                                     <br/>
-                                    <a href = 'http://localhost:3002/'>
-                                            <ButtonServicos>
-                                                <span className="mr-2"> 
-                                                    <i class="fas fa-comments"></i>
-                                                </span>
-                                                Conversar
-                                            </ButtonServicos>
-                                    </a>
                                 </div>
                                 <div className="col-10 mx-auto col-md-6 my-3 text-capitalize">
                                     <h4 className="text-autor text-uppercase mt-3 mb-2">
-                                        feito por: <span className="text-uppercase">
+                                        Nome: <span className="text-uppercase">
                                         {nome}    
                                         </span>
                                     </h4>
-                                    <h4>
-                                        <p id="preco">Preço: R${preco} 
-                                            &emsp;&emsp;
-                                        </p>
-                                        <p id="cidade">Cidade: {cidade} 
-                                            &emsp;&emsp;
-                                        </p>
-                                        <p id="horario">Horario: {horario}
-                                            &emsp;&emsp;
-                                        </p>
-                                        <p id ="classificao">Classificação: {classificacao}
-                                        &emsp;&emsp;
-                                        </p>
-                                    </h4>
-                                    <h4 id="informacao">DESCRIÇÃO SOBRE O SERVIÇO</h4>
+                                    <h4 id="informacao">Resumo de Qualificações</h4>
                                     <p className="text-muted lead">{info}</p>
-                                    <div class = "classificacao">
-                                    <p>Classifique de 1 a 5 esse anuncio </p>
-                                    <input type = "number" id = "valor" name = "valor"  min = "1" max = "5"  onChange ={e => this.updateClassificacao(e)} />
-                                    <br/>
-                                    </div>
-                                    <div class = "classificacao">
-                                    <button onClick = {e => this.newClassificao(id)}>Enviar nova Classificação</button>
-                                    </div>
+                                    <h4 id="horario">Formação Acadêmica: </h4>
+                                    <p className="text-muted lead">{horario}</p>        
                                     <div>
                                         <Link to='/usuariologado'>
                                             <ButtonServicos>
                                                 <span className="mr-2"> 
                                                     <i className="fas fa-arrow-left"></i>
                                                 </span>
-                                                Voltar para Serviços
+                                                Voltar
                                             </ButtonServicos>
                                         </Link>
                                     </div>   
