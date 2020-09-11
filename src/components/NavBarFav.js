@@ -17,7 +17,7 @@ export default class NavbarFav extends Component{
                             <span className="mr-2"> 
                                 <i className="fas fa-handshake"></i>
                             </span>
-                                Currículos
+                                Serviços
                         </ButtonServicos>
                     </Link>
                 </NavWrapper>

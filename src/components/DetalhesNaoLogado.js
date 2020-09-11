@@ -22,26 +22,45 @@ export default class Detalhes extends Component {
                             </div>
                             <div className="row">
                                 <div className="col-10 mx-auto col-md-6 my-3 ">
-                                    <img id="imag" src={img} className="img-fluid" alt="servico"/> 
-                                    <br/>
+                                    <img id="imag" src={img} className="img-fluid" alt="servico"/>
+                                    <Link to='/login'>
+                                            <ButtonServicos>
+                                                <span className="mr-2"> 
+                                                    <i class="fas fa-comments"></i>
+                                                </span>
+                                                Conversar
+                                            </ButtonServicos>
+                                    </Link>
                                 </div>
                                 <div className="col-10 mx-auto col-md-6 my-3 text-capitalize">
                                     <h4 className="text-autor text-uppercase mt-3 mb-2">
-                                        Nome: <span className="text-uppercase">
+                                        feito por: <span className="text-uppercase">
                                         {nome}    
                                         </span>
                                     </h4>
-                                    <h4 id="informacao">Resumo de Qualificações</h4>
+                                    <h4>
+                                        <p id="preco">Preço: R${preco} 
+                                            &emsp;&emsp;
+                                        </p>
+                                        <p id="cidade">Cidade: {cidade} 
+                                            &emsp;&emsp;
+                                        </p>
+                                        <p id="horario">Horarios: {horario}
+                                            &emsp;&emsp;
+                                        </p>
+                                        <p id ="classificao">Classificação: {classificacao}
+                                        &emsp;&emsp;
+                                        </p>
+                                    </h4>
+                                    <h4 id="informacao">DESCRIÇÃO SOBRE O SERVIÇO</h4>
                                     <p className="text-muted lead">{info}</p>
-                                    <h4 id="horario">Formação Acadêmica: </h4>
-                                    <p className="text-muted lead">{horario}</p>   
                                     <div>
                                         <Link to='/'>
                                             <ButtonServicos>
                                                 <span className="mr-2"> 
                                                     <i className="fas fa-arrow-left"></i>
                                                 </span>
-                                                Voltar
+                                                Voltar para Serviços
                                             </ButtonServicos>
                                         </Link>
                                     </div>   
